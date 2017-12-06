@@ -17,7 +17,7 @@ class App(object):
 		parser.add_argument('-sd', '--skip_dights', help='Do not generate dights, process only days file', action='store_true')
 		parser.add_argument('-sz', '--pointsize', type=int, help='Point size', default = 60)
 		parser.add_argument('-fg', '--foreground', type=str, help='Foreground color', required=True)
-		parser.add_argument('-bg', '--background', type=str, help='Background color', required=True)
+		parser.add_argument('-bg', '--background', type=str, help='Background color. Use "bip_none" to set background to #FEFE00', required=True)
 		parser.add_argument('-p', '--prefix', type=str, help='Prefix for fileame', default = '')		
 		parser.add_argument('-d', '--days_file', type=str, help='Filename with additional required texts', default = '')
 		"""parser.set_defaults(skip_dights=False) """
@@ -25,6 +25,7 @@ class App(object):
 		pass
 
 	def doConversion(self):
+		if self._args.background == 'bip_none': self._args.background = '#FEFE00'
 		if not self._args.skip_dights:
 			for x in range(self._args.start,self._args.finish+1):
 				os.system('convert -background "{2}" -fill "{3}" -font {1} -pointsize {4} label:"{0}" "{5}{6}.png"'.format(x, self._args.font, self._args.background, self._args.foreground, self._args.pointsize,
