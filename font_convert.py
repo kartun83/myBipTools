@@ -22,10 +22,13 @@ class App(object):
 		parser.add_argument('-d', '--days_file', type=str, help='Filename with additional required texts', default = '')
 		"""parser.set_defaults(skip_dights=False) """
 		self._args = parser.parse_args()
+
+		self._colors = ['black','blue','green','red','aqua','cyan',' fuchsia', 'magenta','yellow','white','bip_none']
 		pass
 
 	def doConversion(self):
-		if self._args.background == 'bip_none': self._args.background = '#FEFE00'
+		self.checkArguments()
+				
 		if not self._args.skip_dights:
 			for x in range(self._args.start,self._args.finish+1):
 				os.system('convert -background "{2}" -fill "{3}" -font {1} -pointsize {4} label:"{0}" "{5}{6}.png"'.format(x, self._args.font, self._args.background, self._args.foreground, self._args.pointsize,
@@ -39,6 +42,14 @@ class App(object):
 					pass	
 				pass
 		pass
+
+	def checkArguments(self):		
+		if self._args.background not in self._colors:
+			print('Warning: {0} defined for background is not in supported colors list '.format(self._args.background))
+		if self._args.foreground not in self._colors:
+			print('Warning: {0} defined for foreground is not in supported colors list '.format(self._args.foreground))
+		pass	
+		if self._args.background == 'bip_none': self._args.background = '#FEFE00'
 
 
 
