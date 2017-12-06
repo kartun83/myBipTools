@@ -17,7 +17,7 @@ Generate numbers 0-9 as png images using font *thin.ttf*, and generate images fr
 
 `'./font_convert.py' -ttf thin.ttf --foreground=white -bg=bip_none -sz 25 -d delimeter -sd -p prefix`
 
-Generate images only from file *delimeter*, without generating dights, prefixing generated filenames with text 'prefix', for example 'prefixJan', if file *delimeter* contains only single line with text 'Jan'
+Generate images only from file *delimeter*, without generating dights, prefixing generated filenames with text 'prefix', for example 'prefixJan.png', if file *delimeter* contains only single line with text 'Jan'
 
 **Colors**
 Amazfit BIP supports limited colors, use this constants to be on a safe side. Actually RGB color could be used, for example `./font_convert.py' --foreground='#0000FF'`. Tool would try to analyze supplied color and generate warnings if unsupported color is used.
