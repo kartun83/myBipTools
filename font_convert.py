@@ -23,7 +23,8 @@ class App(object):
 		"""parser.set_defaults(skip_dights=False) """
 		self._args = parser.parse_args()
 
-		self._colors = ['black','blue','green','red','aqua','cyan',' fuchsia', 'magenta','yellow','white','bip_none']
+		self._colors = ['black','blue','green','red','aqua','cyan',' fuchsia', 'magenta','yellow','white','bip_none',
+						'#000000' ,'#0000FF' ,'#00FF00' ,'#FF0000' ,'#00FFFF' ,'#FF00FF' ,'#FFFF00' ,'#FFFFFF' ,'#FEFE00']
 		pass
 
 	def doConversion(self):
