@@ -1,7 +1,15 @@
 # myBipTools
 Utilities for making Amazfit BIP watch faces
 
-Requrements: **python3**, **imagemagick**
+Requrements: [**python3**](https://www.python.org/downloads/), [**imagemagick**](https://www.imagemagick.org/script/download.php)
+
+## Note for Windows users
+Install imagemagick with following options
+- add application directory to your system path
+- install legacy utilities
+
+## Linux
+Shold work out of box, in most distributions required software available via package manager. Tested on Linux mint 18.3 with default repositories. Should work with most Ubuntu family distributions.
 
 ## font_convert.py
 Tool for converting TTF/OTF fonts into PNG images. Allow to generate images for dights, and/or images for texts defined in file, one line per text entry
