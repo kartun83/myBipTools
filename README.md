@@ -6,7 +6,7 @@ Requrements: [**python3**](https://www.python.org/downloads/), [**imagemagick**]
 ## Note for Windows users
 Install imagemagick with following options
 - add application directory to your system path
-- install legacy utilities
+Currently it doesn't work on windows10. Not tested on other systems
 
 ## Linux
 Shold work out of box, in most distributions required software available via package manager. Tested on Linux mint 18.3 with default repositories. Should work with most Ubuntu family distributions.
