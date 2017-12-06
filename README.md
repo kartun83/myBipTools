@@ -38,3 +38,13 @@ Amazfit BIP supports limited colors, use this constants to be on a safe side. Ac
 * yellow
 * white
 * bip_none. Actual transparency for png: none. Not sure if BIP can handle this properly
+
+## qBipDesigner
+Goal of this tool to provide realtime feedback and allow user to design watch faces without minimal efforts and maximum productivity.
+Currently it's proof of concept that this could be done mostly with pure QML\Javascript. At this time it could do:
+- Load JSON file
+- Locate images defined in JSON file
+- Respond to changes in JSON data in embedded editor
+*bad info* : currently it supports only background manipulation. It ignors all other properties.
+
+**Requires** : QT5, build with QT 5.9
