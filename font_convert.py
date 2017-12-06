@@ -27,13 +27,13 @@ class App(object):
 	def doConversion(self):
 		if not self._args.skip_dights:
 			for x in range(self._args.start,self._args.finish+1):
-				os.system('convert -background {2} -fill {3} -font {1} -pointsize {4} label:"{0}" "{5}{6}.png"'.format(x, self._args.font, self._args.background, self._args.foreground, self._args.pointsize,
+				os.system('convert -background "{2}" -fill "{3}" -font {1} -pointsize {4} label:"{0}" "{5}{6}.png"'.format(x, self._args.font, self._args.background, self._args.foreground, self._args.pointsize,
 					self._args.prefix, self._args.offset + x))
 				pass		
 		if self._args.days_file:
 			with open(self._args.days_file, 'r') as f:
 				for cnt, line in enumerate(f):					
-					os.system('convert -background {2} -fill {3} -font {1} -pointsize {4} label:"{0}" "{0}.png"'.format(line , self._args.font, self._args.background, self._args.foreground, self._args.pointsize,
+					os.system('convert -background "{2}" -fill "{3}" -font {1} -pointsize {4} label:"{0}" "{0}.png"'.format(line , self._args.font, self._args.background, self._args.foreground, self._args.pointsize,
 					self._args.prefix))
 					pass	
 				pass
