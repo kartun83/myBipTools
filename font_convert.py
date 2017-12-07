@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 
 """ Font converter for Amazfit BIP """
+""" Author: Alexey Tveritinov, [kartun@yandex.ru] """
+""" License GNU General Public License v3.0 """
 
 import argparse
 import os
+import re
 
 class App(object):
 	"""docstring for App"""
@@ -23,23 +26,26 @@ class App(object):
 		"""parser.set_defaults(skip_dights=False) """
 		self._args = parser.parse_args()
 
-		self._colors = ['black','blue','green','red','aqua','cyan',' fuchsia', 'magenta','yellow','white','bip_none',
-						'#000000' ,'#0000FF' ,'#00FF00' ,'#FF0000' ,'#00FFFF' ,'#FF00FF' ,'#FFFF00' ,'#FFFFFF' ,'#FEFE00']
+		self._colors = ['black','blue','green','red','aqua','cyan',' fuchsia', 'magenta','yellow','white','bip_none','transparent','none',
+						'#000000' ,'#0000FF' ,'#00FF00' ,'#FF0000' ,'#00FFFF' ,'#FF00FF' ,'#FFFF00' ,'#FFFFFF' ,'#FEFE00','#00000000']
 		pass
 
 	def doConversion(self):
 		self.checkArguments()
-				
+		
+		add_texts_start_id = 0
 		if not self._args.skip_dights:
 			for x in range(self._args.start,self._args.finish+1):
-				os.system('convert -background "{2}" -fill "{3}" -font {1} -pointsize {4} label:"{0}" "{5}{6}.png"'.format(x, self._args.font, self._args.background, self._args.foreground, self._args.pointsize,
+				os.system('magick -depth 1 -background "{2}" -fill "{3}" -font {1} -pointsize {4} label:"{0}" "{5}{6}.png"'.format(x, self._args.font, self._args.background, self._args.foreground, self._args.pointsize,
 					self._args.prefix, self._args.offset + x))
-				pass		
+				pass
+			add_texts_start_id = self._args.finish+1
 		if self._args.days_file:
 			with open(self._args.days_file, 'r') as f:
-				for cnt, line in enumerate(f):					
-					os.system('convert -background "{2}" -fill "{3}" -font {1} -pointsize {4} label:"{0}" "{0}.png"'.format(line , self._args.font, self._args.background, self._args.foreground, self._args.pointsize,
-					self._args.prefix))
+				for idx, line in enumerate(f):	
+					line = re.sub('\t|\n|\r','', line)
+					os.system('magick -depth 1 -background "{2}" -fill "{3}" -font {1} -pointsize {4} label:"{0}" "{5}{6}.png"'.format(line , self._args.font, self._args.background, self._args.foreground, self._args.pointsize,
+					self._args.prefix, self._args.offset + add_texts_start_id + idx))
 					pass	
 				pass
 		pass
