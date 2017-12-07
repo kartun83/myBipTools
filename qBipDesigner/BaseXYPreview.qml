@@ -1,4 +1,4 @@
-import QtQuick 2.7
+import QtQuick 2.9
 import QtGraphicalEffects 1.0
 import "Utitilies.js" as Utils
 
@@ -19,29 +19,11 @@ Item {
                                                jsonParser_lcl,
                                                basePath).ImageIndex + '.png')
 
-            onSourceChanged: {
-                console.log("Eval3:" + Utils.getNestedValue(jsonParser_lcl,
-                                                            basePath))
-            }
+            //            onSourceChanged: {
+            //                console.log("Eval3:" + Utils.getNestedValue(jsonParser_lcl,
+            //                                                            basePath))
+            //            }
         }
-
-        //        Rectangle {
-        //            id: mask
-        //            //            color: '#FEFE00'
-        //            color: "green"
-        //            width: timeImage.width + 10
-        //            height: timeImage.height + 10
-        //            //            source: "images/butterfly.png"
-        //            //            sourceSize: Qt.size(parent.width, parent.height)
-        //            smooth: true
-        //            visible: false
-        //        }
-
-        //        OpacityMask {
-        //            anchors.fill: timeImage
-        //            source: timeImage
-        //            maskSource: mask
-        //        }
         MouseArea {
             anchors.fill: parent
             onClicked: //container.clicked(container.cellColor)

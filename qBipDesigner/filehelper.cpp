@@ -67,6 +67,10 @@ void FileHelper::saveFile()
         QTextStream outStream(&file);
         outStream << m_fileContent;
     }
+    else
+    {
+        qDebug() << "Writing failed";
+    }
 
     file.close();
 }

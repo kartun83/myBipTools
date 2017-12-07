@@ -3,16 +3,6 @@ import QtQuick.Dialogs 1.2
 
 Page1Form {
 
-    browseButton.onClicked: {
-        console.log("Button Pressed. Entered text: " + jsonFilename.text)
-        fileDialog.visible = true
-    }
-
-    refreshButton.onClicked: {
-        console.log("Refreshing JSON from editor")
-        jsonParser = JSON.parse(jsonData)
-    }
-
     FileDialog {
         id: fileDialog
         title: "Please choose a file"

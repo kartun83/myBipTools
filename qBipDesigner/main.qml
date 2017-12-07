@@ -11,6 +11,7 @@ ApplicationWindow {
     id: app
     property ApplicationWindow appWindow: app
     property var jsonParser
+    property var jsonData
 
     FileHelper {
         id: fileHelper
@@ -18,9 +19,8 @@ ApplicationWindow {
         //onDirectoryChanged: fileDialog.notifyRefresh()
     }
 
-    DesignPreview {
-    }
-
+    //    DesignPreview {
+    //    }
     Page1 {
     }
 }
