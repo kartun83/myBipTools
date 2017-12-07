@@ -671,10 +671,10 @@ qrc_qml.cpp: ../qBipDesigner/qml.qrc \
 		../qBipDesigner/Page1Form.ui.qml \
 		../qBipDesigner/Utitilies.js \
 		../qBipDesigner/DesignPreview.qml \
+		../qBipDesigner/TimePreview.qml \
 		../qBipDesigner/Page1.qml \
 		../qBipDesigner/qtquickcontrols2.conf \
-		../qBipDesigner/main.qml \
-		../qBipDesigner/DynamicImage.qml
+		../qBipDesigner/main.qml
 	/home/kartun/Qt/5.9.2/gcc_64/bin/rcc -name qml ../qBipDesigner/qml.qrc -o qrc_qml.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h

@@ -6,9 +6,15 @@ function isEmpty(object) {
 }
 
 function getNestedValue(obj, key) {
-    if (obj !== undefined) {
+    if (typeof obj !== undefined) {
+        if (typeof key === undefined) {
+            console.log("Empty key supplied")
+        }
+
         return key.split(".").reduce(function (result, key) {
             return result[key]
         }, obj)
+    } else {
+        console.log("Undefined object supplied")
     }
 }

@@ -3,22 +3,49 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 
 Item {
-    property alias textField1: textField1
-    property alias button1: button1
+    property alias jsonFilename: jsonFilename
+    property alias browseButton: browseButton
+    property alias refreshButton: refreshButton
+    property alias jsonData: jsonData.text
 
-    RowLayout {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: 20
-        anchors.top: parent.top
+    ColumnLayout {
+        width: 640
+        height: 480
+        spacing: 2
 
-        TextField {
-            id: textField1
-            placeholderText: qsTr("Text Field")
+        RowLayout {
+            anchors.horizontalCenter: parent.horizontalCenter
+            //anchors.topMargin: 20
+            anchors.top: parent.top
+
+            TextField {
+                id: jsonFilename
+                placeholderText: qsTr("Select file")
+            }
+
+            Button {
+                id: browseButton
+                text: qsTr("Browse")
+            }
+            Button {
+                id: saveButton
+                text: qsTr("Save")
+            }
+        }
+
+        TextInput {
+            id: jsonData
+            text: "test"
+            wrapMode: TextEdit.Wrap
+            selectByMouse: true
+            //anchors.fill: parent
+            width: parent.width
+            height: parent.height
         }
 
         Button {
-            id: button1
-            text: qsTr("Press Me")
+            id: refreshButton
+            text: qsTr("Refresh")
         }
     }
 }
