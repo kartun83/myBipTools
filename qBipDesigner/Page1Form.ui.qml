@@ -9,6 +9,8 @@ Item {
     //    property alias jsonFilename: fileSelector. jsonFilename
     //    property alias browseButton: browseButton
     //    property alias jsonData: jsonData.text
+    property int dpReqHeight: 178
+    property int dpReqWidth: 178
     ColumnLayout {
         id: column
         anchors.fill: parent
@@ -27,6 +29,9 @@ Item {
 
                 DesignPreview {
                     id: designPreview
+                    controlWidth: dpReqWidth
+                    contolHeight: dpReqHeight
+                    scale: 1.0
                 }
 
                 ColumnLayout {
@@ -61,10 +66,48 @@ Item {
             Layout.fillHeight: true
             Layout.fillWidth: true
 
-            JSONView {
-                id: jSONView
+            RowLayout {
+                id: rowLayout1
                 anchors.fill: parent
+                Rectangle {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    id: dpScaledRect
+
+                    color: "grey"
+                    DesignPreview {
+                        id: designPreviewScaled
+                        Layout.leftMargin: 10
+                        contolHeight: parent.height
+                        controlWidth: parent.width
+                    }
+                }
+                Rectangle {
+                    Layout.fillHeight: true
+                    //Layout.fillWidth: true
+                    color: "green"
+                    Layout.alignment: Qt.AlignRight | Qt.AlignTop
+                    Layout.minimumHeight: 250
+                    Layout.minimumWidth: 400
+                    Layout.preferredHeight: Layout.minimumHeight
+                    //Layout.preferredWidth: Layout.preferredWidth
+                    JSONView {
+                        id: jSONView
+                        anchors.fill: parent
+                    }
+                }
             }
+        }
+    }
+
+    Connections {
+        target: dpScaledRect
+        onWidthChanged: {
+            console.log("Resizing:", dpScaledRect.height / dpReqHeight,
+                        dpScaledRect.width / dpReqWidth)
+            designPreviewScaled.scale = Math.min(
+                        dpScaledRect.height / dpReqHeight,
+                        dpScaledRect.width / dpReqWidth)
         }
     }
 }

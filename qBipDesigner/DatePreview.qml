@@ -15,6 +15,7 @@ Item {
         border.color: "white"
         border.width: 2
 
+
         Image {
             id: timeImage
             source: fileHelper.getFilename(

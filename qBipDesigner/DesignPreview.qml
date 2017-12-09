@@ -3,22 +3,35 @@ import QtQuick.Layouts 1.3
 import "Utitilies.js" as Utils
 
 Item {
-    width: 178
-    height: 178
+    //width: 178
+    //height: 178
+    id: designPreviewTopBox
+    property alias controlWidth: designPreviewTopBox.width
+    property alias contolHeight: designPreviewTopBox.height
+    //    property alias scale: designPreview.scale
+    transformOrigin: Item.TopLeft
 
     Layout.leftMargin: 10
 
     Rectangle {
+        id: designPreviewRect
         property string basePath: 'Background.Image'
         x: Utils.getNestedValue(jsonParser, basePath).X
         y: Utils.getNestedValue(jsonParser, basePath).Y
+        Layout.fillHeight: parent.height
+        Layout.fillWidth: parent.width
+        Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+
         border.color: "green"
         border.width: 2
         Image {
+            Layout.alignment: Qt.AlignLeft | Qt.AlignTop
             id: background
             source: fileHelper.getFilename(
                         Utils.getNestedValue(
                             jsonParser, parent.basePath).ImageIndex + '.png')
+            //scale: 2.0
+            //scale: 1.0
         }
     }
 
@@ -55,6 +68,15 @@ Item {
     BaseXYPreview {
         basePath: 'Time.Minutes.Ones'
         id: minutesOnes
+    }
+
+    BaseXYPreview {
+        basePath: 'Time.Seconds.Tens'
+        id: secondsTens
+    }
+    BaseXYPreview {
+        basePath: 'Time.Seconds.Ones'
+        id: secondsOnes
     }
     // Date
     DatePreview {

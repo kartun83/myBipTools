@@ -14,6 +14,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         //anchors.topMargin: 20
         anchors.top: parent.top
+        Layout.alignment: Qt.AlignVCenter
 
         TextField {
             id: jsonFilename

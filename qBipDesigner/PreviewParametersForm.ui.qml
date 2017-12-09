@@ -19,10 +19,13 @@ Item {
             color: "#afafaf"
             Layout.fillWidth: true
             Layout.fillHeight: true
+
             Flow {
                 id: flow1
+                anchors.top: parent.top
+                anchors.topMargin: 10
                 spacing: 5
-                anchors.fill: parent
+                Layout.alignment: Qt.AlignVCenter
 
                 Text {
                     id: text1
@@ -77,8 +80,11 @@ Item {
             Layout.fillWidth: true
             Flow {
                 id: fitFlow
+                anchors.top: parent.top
+                anchors.topMargin: 10
+                //anchors.fill: parent
+                //Layout.margins:
                 spacing: 5
-                anchors.fill: parent
                 Text {
                     id: text4
                     text: qsTr("Steps")

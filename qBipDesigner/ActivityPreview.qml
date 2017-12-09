@@ -18,11 +18,6 @@ Item {
             source: fileHelper.getFilename(Utils.getNestedValue(
                                                jsonParser_lcl,
                                                basePath).ImageIndex + '.png')
-
-            //            onSourceChanged: {
-            //                console.log("Eval3:" + Utils.getNestedValue(jsonParser_lcl,
-            //                                                            basePath))
-            //            }
         }
         MouseArea {
             anchors.fill: parent
