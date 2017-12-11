@@ -4,9 +4,8 @@ Utilities for making Amazfit BIP watch faces
 Requrements: [**python3**](https://www.python.org/downloads/), [**imagemagick**](https://www.imagemagick.org/script/download.php)
 
 ## Note for Windows users
-Install imagemagick with following options
-- add application directory to your system path
-Currently it doesn't work on windows10. Not tested on other systems
+Download imagemagick portable and extract magick.exe and colors.xml into script directory.
+Tested on windows10
 
 ## Linux
 Shold work out of box, in most distributions required software available via package manager. Tested on Linux mint 18.3 with default repositories. Should work with most Ubuntu family distributions.
