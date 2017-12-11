@@ -101,13 +101,23 @@ Item {
     }
 
     Connections {
+
         target: dpScaledRect
+
         onWidthChanged: {
             console.log("Resizing:", dpScaledRect.height / dpReqHeight,
                         dpScaledRect.width / dpReqWidth)
             designPreviewScaled.scale = Math.min(
                         dpScaledRect.height / dpReqHeight,
                         dpScaledRect.width / dpReqWidth)
+        }
+    }
+
+    Connections {
+        target: appWindow
+
+        onVisibleChanged: {
+            console.log("On visible changed")
         }
     }
 }

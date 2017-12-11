@@ -18,3 +18,10 @@ function getNestedValue(obj, key) {
         console.log("Undefined object supplied")
     }
 }
+
+function checkTime(i) {
+    if (i < 10) {
+        i = "0" + i
+    }
+    return i
+}
