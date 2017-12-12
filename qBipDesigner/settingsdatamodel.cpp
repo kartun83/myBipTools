@@ -92,9 +92,10 @@ QString SettingsDataModel::time() const
 
 void SettingsDataModel::setTime(const QString &time)
 {
-
-    m_time = time;
-    emit TimeChanged(m_time);
+    if ( QTime::fromString(time,"hh:mm:ss").isValid() ) {
+        m_time = time;
+        emit TimeChanged(m_time);
+    }
 }
 
 QString SettingsDataModel::date() const
@@ -104,9 +105,11 @@ QString SettingsDataModel::date() const
 
 void SettingsDataModel::setDate(const QString &date)
 {
-    m_date = date;
-    emit DateChanged(m_date);
-    emit dayNumberChanged(dayNumber());
+    if (QDate::fromString(date, "dd.MM.yyyy").isValid()) {
+        m_date = date;
+        emit DateChanged(m_date);
+        emit dayNumberChanged(dayNumber());
+    }
 }
 
 int SettingsDataModel::dayNumber() const

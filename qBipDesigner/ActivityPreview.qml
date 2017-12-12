@@ -32,7 +32,7 @@ Item {
         border.width: 2
 
         Row {
-            spacing: 0
+            spacing: Utils.getNestedValue(jsonParser_lcl, basePath).Spacing
             Repeater {
                 model: itemModel
                 Image {

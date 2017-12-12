@@ -16,5 +16,6 @@
         <file>DatePreview.qml</file>
         <file>SettingsDataModel.js</file>
         <file>AdvancedXYPreview.qml</file>
+        <file>TimePreview.qml</file>
     </qresource>
 </RCC>

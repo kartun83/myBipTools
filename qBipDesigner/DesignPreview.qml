@@ -36,32 +36,43 @@ Item {
     }
 
     // Time
-    BaseXYPreview {
+    TimePreview {
         basePath: 'Time.Hours.Tens'
         id: hoursTens
+        modelData: mySettingsModel.Time
+        idx: 0
     }
 
-    BaseXYPreview {
+    TimePreview {
         basePath: 'Time.Hours.Ones'
         id: hoursOnes
+        modelData: mySettingsModel.Time
+        idx: 1
     }
-    BaseXYPreview {
+    TimePreview {
         basePath: 'Time.Minutes.Tens'
         id: minutesTens
+        modelData: mySettingsModel.Time
+        idx: 3
     }
-    BaseXYPreview {
+    TimePreview {
         basePath: 'Time.Minutes.Ones'
         id: minutesOnes
+        modelData: mySettingsModel.Time
+        idx: 4
     }
 
-    BaseXYPreview {
+    TimePreview {
         basePath: 'Time.Seconds.Tens'
         id: secondsTens
+        modelData: mySettingsModel.Time
+        idx: 6
     }
-    BaseXYPreview {
+    TimePreview {
         basePath: 'Time.Seconds.Ones'
         id: secondsOnes
-        //modelData: mySettingsModel.Time
+        modelData: mySettingsModel.Time
+        idx: 7
     }
     // Date
     DatePreview {
