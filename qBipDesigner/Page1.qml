@@ -26,4 +26,19 @@ Page1Form {
         }
         //Component.onCompleted: visible = true
     }
+
+    //    gridCanvas.onPaint: {
+    //        var ctx = gridCanvas.getContext("2d")
+
+    //        ctx.fillStyle = "white"
+    //        ctx.fillRect(0, 0, gridCanvas.width, gridCanvas.height)
+
+    //        ctx.lineWidth = 15
+    //        ctx.strokeStyle = "red"
+    //        ctx.beginPath()
+    //        ctx.moveTo(5, 0)
+    //        ctx.lineTo(5, gridCanvas.height)
+    //        //ctx.closePath()
+    //        ctx.stroke()
+    //    }
 }

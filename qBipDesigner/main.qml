@@ -34,7 +34,8 @@ ApplicationWindow {
         app.globalSettings.Battery = '53'
         app.globalSettings.Steps = '1234'
         app.globalSettings.StepsGoal = '10000'
-        app.globalSettings.Callories = '68'
+        app.globalSettings.Calories = '68'
+        app.globalSettings.Pulse = '112'
         var today = new Date()
         var h = Utils.checkTime(today.getHours())
         var m = Utils.checkTime(today.getMinutes())
@@ -43,5 +44,9 @@ ApplicationWindow {
         //globalSettings.time = today.toLocaleTimeString()
         console.log(app.globalSettings.time)
         //globalSettings.date = d.getDate()
+    }
+
+    onWindowStateChanged: {
+
     }
 }

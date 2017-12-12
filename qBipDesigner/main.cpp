@@ -6,6 +6,16 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QLoggingCategory::setFilterRules(QStringLiteral("qt.qml.binding.removal.info=true"));
+
+    // Init additional libs
+    QStringList paths = QCoreApplication::libraryPaths();
+    paths.append(".");
+    paths.append("imageformats");
+    paths.append("platforms");
+    paths.append("sqldrivers");
+    QCoreApplication::setLibraryPaths(paths);
+
     QGuiApplication app(argc, argv);
 
     // Declaring your C++ class to the QML system

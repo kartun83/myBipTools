@@ -35,22 +35,6 @@ Item {
         }
     }
 
-    //    Rectangle {
-    //        property string basePath: 'Time.Hours.Tens'
-    //        x: Utils.getNestedValue(jsonParser, basePath).X
-    //        y: Utils.getNestedValue(jsonParser, basePath).Y
-    //        Image {
-    //            id: hoursTens
-    //            source: fileHelper.getFilename(
-    //                        Utils.getNestedValue(
-    //                            jsonParser, parent.basePath).ImageIndex + '.png')
-    //            //            onSourceChanged: {
-    //            //                console.log("Eval:" + Utils.getNestedValue(jsonParser,
-    //            //                                                           parent.basePath))
-    //            //            }
-    //        }
-    //    }
-
     // Time
     BaseXYPreview {
         basePath: 'Time.Hours.Tens'
@@ -129,5 +113,17 @@ Item {
     BaseXYPreview {
         id: batteryTextPreview
         basePath: "Battery.Text"
+    }
+
+    Component.onCompleted: {
+        steps.modelData = Qt.binding(function () {
+            return app.globalSettings.Steps
+        })
+        calories.modelData = Qt.binding(function () {
+            return app.globalSettings.Calories
+        })
+        pulse.modelData = Qt.binding(function () {
+            return app.globalSettings.Pulse
+        })
     }
 }

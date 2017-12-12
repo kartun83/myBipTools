@@ -11,6 +11,8 @@ Item {
     //    property alias jsonData: jsonData.text
     property int dpReqHeight: 178
     property int dpReqWidth: 178
+    //    property alias gridCanvas: drawingCanvas
+    //    property alias dpCanvas: designPreviewScaled
     ColumnLayout {
         id: column
         anchors.fill: parent
@@ -41,7 +43,7 @@ Item {
                     //                    height: 100
                     FileSelector {
                         id: fileSelector
-                        Layout.fillHeight: true
+                        //Layout.fillHeight: true
                         Layout.fillWidth: true
                         Layout.minimumHeight: 50
                     }
@@ -75,11 +77,16 @@ Item {
                     id: dpScaledRect
 
                     color: "grey"
+
+                    //                    Canvas {
+                    //                        id: drawingCanvas
+                    //                        anchors.fill: parent
                     DesignPreview {
                         id: designPreviewScaled
                         Layout.leftMargin: 10
                         contolHeight: parent.height
                         controlWidth: parent.width
+                        //                        }
                     }
                 }
                 Rectangle {
@@ -118,6 +125,10 @@ Item {
 
         onVisibleChanged: {
             console.log("On visible changed")
+        }
+
+        onWindowStateChanged: {
+            dpScaledRect.onWidthChanged()
         }
     }
 }

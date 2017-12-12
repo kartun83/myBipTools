@@ -4,14 +4,15 @@ import QtQuick.Controls 2.2
 
 Item {
     id: item1
-    width: 400
-    height: 400
+    //width: 400
+    //height: 200
     property alias calloriesEditText: calloriesEdit.text
     property alias stepsGoalEditText: stepsGoalEdit.text
     property alias stepsEditText: stepsEdit.text
     property alias batteryEditText: batteryEdit.text
     property alias dateEditText: dateEdit.text
     property alias timeEditText: timeEdit.text
+    property alias pulseEditText: pulseEdit.text
     //parent: none.none
 
     //    anchors.fill: parent
@@ -26,20 +27,23 @@ Item {
             color: "#7a6e6e"
 
             //            Layout.preferredHeight: 200
-            Layout.preferredHeight: 100
-            Layout.maximumHeight: 100
+            Layout.preferredHeight: 50
+            Layout.maximumHeight: 150
             Layout.fillWidth: true
             //            anchors.//            Layout.fillHeight: true
-            Flow {
-                id: flow1
-                //anchors.bottomMargin: 124
-                //                anchors.top: parent.top
-                anchors.topMargin: 10
+            RowLayout {
+
+                //                id: flow1
+                //                //anchors.bottomMargin: 124
+                //                //                anchors.top: parent.top
+                //                anchors.topMargin: 10
                 spacing: 5
+                Layout.preferredWidth: 250
+                anchors.top: parent.top
+                anchors.topMargin: 10
 
-                //Layout.alignment: Qt.AlignVCenter
+                //                //Layout.alignment: Qt.AlignVCenter
                 anchors.fill: parent
-
                 Text {
                     id: text1
                     text: qsTr("Time")
@@ -49,7 +53,7 @@ Item {
 
                 TextField {
                     id: timeEdit
-                    width: 80
+                    Layout.preferredWidth: 80
                     //height: 20
                     text: app.globalSettings.time //qsTr("")
                     font.pixelSize: 12
@@ -64,9 +68,10 @@ Item {
 
                 TextField {
                     id: dateEdit
-                    width: 80
+                    Layout.preferredWidth: 80
                     //height: 20
-                    text: app.globalSettings.Date //qsTr("")
+                    text: app.globalSettings.Date
+                    z: 1 //qsTr("")
                     font.pixelSize: 12
                 }
 
@@ -79,7 +84,7 @@ Item {
 
                 TextField {
                     id: batteryEdit
-                    width: 80
+                    Layout.preferredWidth: 80
                     //height: 20
                     text: app.globalSettings.Battery //qsTr("")
                     font.pixelSize: 12
@@ -93,14 +98,15 @@ Item {
             //            height: 200
             color: "#afafaf"
             //            Layout.fillHeight: true
-            Layout.preferredHeight: 100
+            Layout.preferredHeight: 50
             Layout.maximumHeight: 150
             Layout.fillWidth: true
-            Flow {
+            RowLayout {
                 id: fitFlow
                 anchors.top: parent.top
                 anchors.topMargin: 10
-                anchors.fill: parent
+                Layout.preferredWidth: 250
+                //                anchors.fill: parent
                 //Layout.margins:
                 spacing: 5
                 Text {
@@ -112,7 +118,7 @@ Item {
 
                 TextField {
                     id: stepsEdit
-                    width: 80
+                    Layout.preferredWidth: 80
                     //height: 20
                     text: app.globalSettings.Steps //qsTr("")
                     selectionColor: "#00801c"
@@ -128,7 +134,7 @@ Item {
 
                 TextField {
                     id: stepsGoalEdit
-                    width: 80
+                    Layout.preferredWidth: 80
                     //height: 20
                     text: app.globalSettings.StepsGoal //qsTr("")
                     font.pixelSize: 12
@@ -143,9 +149,23 @@ Item {
 
                 TextField {
                     id: calloriesEdit
-                    width: 80
+                    Layout.preferredWidth: 80
                     //height: 20
                     text: app.globalSettings.Callories //qsTr("")
+                    font.pixelSize: 12
+                }
+                Text {
+                    id: text7
+                    text: qsTr("Pulse")
+                    //anchors.verticalCenter: calloriesEdit.verticalCenter
+                    font.pixelSize: 12
+                }
+
+                TextField {
+                    id: pulseEdit
+                    Layout.preferredWidth: 80
+                    //height: 20
+                    text: app.globalSettings.Pulse //qsTr("")
                     font.pixelSize: 12
                 }
             }
@@ -156,10 +176,11 @@ Item {
             //            width: 200
             //            height: 200
             color: "#afafaf"
-            Layout.preferredHeight: 100
+            Layout.preferredHeight: 70
             Layout.maximumHeight: 200
             //Layout.fillHeight: true
             Layout.fillWidth: true
+
             Flow {
                 id: sysFlow
                 anchors.fill: parent

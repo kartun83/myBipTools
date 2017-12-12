@@ -18,6 +18,11 @@ PreviewParametersForm {
         stepsGoalEditText = Qt.binding(function () {
             return app.globalSettings.StepsGoal
         })
+
+        pulseEditText = Qt.binding(function () {
+            return app.globalSettings.Pulse
+        })
+
         dateEditText = Qt.binding(function () {
             return app.globalSettings.Date
         })
@@ -25,5 +30,9 @@ PreviewParametersForm {
         batteryEditText = Qt.binding(function () {
             return app.globalSettings.Battery
         })
+    }
+
+    onStepsEditTextChanged: {
+        app.globalSettings.Steps = stepsEditText
     }
 }
