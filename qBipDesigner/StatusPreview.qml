@@ -6,6 +6,7 @@ Item {
     id: baseImg
     property string basePath
     property var jsonParser_lcl: jsonParser
+    property bool modelData
 
     Rectangle {
         x: Utils.getNestedValue(parent.jsonParser_lcl,
@@ -17,14 +18,22 @@ Item {
 
         Image {
             id: timeImage
-            source: fileHelper.getFilename(Utils.getNestedValue(
+            source: {
+                if (modelData == true) {
+                    fileHelper.getFilename(Utils.getNestedValue(
                                                jsonParser_lcl,
-                                               basePath).ImageIndex + '.png')
+                                               basePath).ImageIndexOn + '.png')
+                } else {
+                    fileHelper.getFilename(Utils.getNestedValue(
+                                               jsonParser_lcl,
+                                               basePath).ImageIndexOff + '.png')
+                }
+            }
 
-            //            onSourceChanged: {
-            //                console.log("Eval3:" + Utils.getNestedValue(jsonParser_lcl,
-            //                                                            basePath))
-            //            }
+            onSourceChanged: {
+                console.log("Eval status preview:" + Utils.getNestedValue(
+                                jsonParser_lcl, basePath).ImageIndexOn + '.png')
+            }
         }
         MouseArea {
             anchors.fill: parent

@@ -13,6 +13,11 @@ Item {
     property alias dateEditText: dateEdit.text
     property alias timeEditText: timeEdit.text
     property alias pulseEditText: pulseEdit.text
+    property alias alarmCheck: alarmSwitch.checked
+    property alias bluetoothCheck: bluetoothSwitch.checked
+    property alias dndCheck: dndSwitch.checked
+    property alias lockedCheck: lockedSwitch.checked
+
     //parent: none.none
 
     //    anchors.fill: parent
@@ -55,7 +60,7 @@ Item {
                     id: timeEdit
                     Layout.preferredWidth: 80
                     //height: 20
-                    text: app.globalSettings.time //qsTr("")
+                    text: mySettingsModel.Time //qsTr("")
                     font.pixelSize: 12
                 }
 
@@ -70,7 +75,7 @@ Item {
                     id: dateEdit
                     Layout.preferredWidth: 80
                     //height: 20
-                    text: app.globalSettings.Date
+                    text: mySettingsModel.Date
                     z: 1 //qsTr("")
                     font.pixelSize: 12
                 }
@@ -86,7 +91,7 @@ Item {
                     id: batteryEdit
                     Layout.preferredWidth: 80
                     //height: 20
-                    text: app.globalSettings.Battery //qsTr("")
+                    text: mySettingsModel.Battery //qsTr("")
                     font.pixelSize: 12
                 }
             }
@@ -120,7 +125,7 @@ Item {
                     id: stepsEdit
                     Layout.preferredWidth: 80
                     //height: 20
-                    text: app.globalSettings.Steps //qsTr("")
+                    text: mySettingsModel.Steps //qsTr("")
                     selectionColor: "#00801c"
                     font.pixelSize: 12
                 }
@@ -136,13 +141,13 @@ Item {
                     id: stepsGoalEdit
                     Layout.preferredWidth: 80
                     //height: 20
-                    text: app.globalSettings.StepsGoal //qsTr("")
+                    text: mySettingsModel.StepsGoal //qsTr("")
                     font.pixelSize: 12
                 }
 
                 Text {
                     id: text6
-                    text: qsTr("Callories")
+                    text: qsTr("Calories")
                     //anchors.verticalCenter: calloriesEdit.verticalCenter
                     font.pixelSize: 12
                 }
@@ -151,7 +156,7 @@ Item {
                     id: calloriesEdit
                     Layout.preferredWidth: 80
                     //height: 20
-                    text: app.globalSettings.Callories //qsTr("")
+                    text: mySettingsModel.Calories //qsTr("")
                     font.pixelSize: 12
                 }
                 Text {
@@ -165,7 +170,7 @@ Item {
                     id: pulseEdit
                     Layout.preferredWidth: 80
                     //height: 20
-                    text: app.globalSettings.Pulse //qsTr("")
+                    text: mySettingsModel.Pulse //qsTr("")
                     font.pixelSize: 12
                 }
             }
@@ -190,21 +195,25 @@ Item {
                 Switch {
                     id: alarmSwitch
                     text: qsTr("Alarm")
+                    checked: mySettingsModel.Alarm
                 }
 
                 Switch {
                     id: bluetoothSwitch
                     text: qsTr("Bluetooth")
+                    checked: mySettingsModel.Bluetooth
                 }
 
                 Switch {
                     id: dndSwitch
                     text: qsTr("DND")
+                    checked: mySettingsModel.DND
                 }
 
                 Switch {
                     id: lockedSwitch
                     text: qsTr("Locked")
+                    checked: mySettingsModel.Locked
                 }
             }
         }

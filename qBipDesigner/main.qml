@@ -15,8 +15,7 @@ ApplicationWindow {
     property var jsonParser
     property var jsonData
 
-    property var globalSettings
-
+    //property var globalSettings: Settings
     FileHelper {
         id: fileHelper
         //filename: textInput.text
@@ -29,24 +28,28 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        console.log("Initalizing global parameters in main.onCreated")
-        app.globalSettings = new Object()
-        app.globalSettings.Battery = '53'
-        app.globalSettings.Steps = '1234'
-        app.globalSettings.StepsGoal = '10000'
-        app.globalSettings.Calories = '68'
-        app.globalSettings.Pulse = '112'
-        var today = new Date()
-        var h = Utils.checkTime(today.getHours())
-        var m = Utils.checkTime(today.getMinutes())
-        var s = Utils.checkTime(today.getSeconds())
-        app.globalSettings.time = h + ":" + m + ":" + s
-        //globalSettings.time = today.toLocaleTimeString()
-        console.log(app.globalSettings.time)
-        //globalSettings.date = d.getDate()
+
+        console.log("Default settings:" + mySettingsModel)
     }
 
+    //    Component.onCompleted: {
+    //        console.log("Initalizing global parameters in main.onCreated")
+    //        app.globalSettings = new Object()
+    //        app.globalSettings.Battery = '53'
+    //        app.globalSettings.Steps = '1234'
+    //        app.globalSettings.StepsGoal = '10000'
+    //        app.globalSettings.Calories = '68'
+    //        app.globalSettings.Pulse = '112'
+    //        var today = new Date()
+    //        var h = Utils.checkTime(today.getHours())
+    //        var m = Utils.checkTime(today.getMinutes())
+    //        var s = Utils.checkTime(today.getSeconds())
+    //        app.globalSettings.time = h + ":" + m + ":" + s
+    //        //globalSettings.time = today.toLocaleTimeString()
+    //        console.log(app.globalSettings.time)
+    //        //globalSettings.date = d.getDate()
+    //    }
     onWindowStateChanged: {
-
+        console.log("Window state changed")
     }
 }

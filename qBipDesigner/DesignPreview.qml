@@ -61,48 +61,58 @@ Item {
     BaseXYPreview {
         basePath: 'Time.Seconds.Ones'
         id: secondsOnes
+        //modelData: mySettingsModel.Time
     }
     // Date
     DatePreview {
         id: dateTextPreview
         basePath: 'Date.MonthAndDay.OneLine'
+        //modelData: mySettingsModel.Date
     }
 
     BaseXYPreview {
         basePath: 'Date.WeekDay'
         id: dateWeekdayPreview
+        modelData: mySettingsModel.dayNumber
     }
 
     // Activity
     ActivityPreview {
         id: steps
         basePath: "Activity.Steps"
+        modelData: mySettingsModel.Steps
     }
     ActivityPreview {
         id: calories
         basePath: "Activity.Calories"
+        modelData: mySettingsModel.Calories
     }
     ActivityPreview {
         id: pulse
         basePath: "Activity.Pulse"
+        modelData: mySettingsModel.Pulse
     }
 
     // Status Icons
     StatusPreview {
         id: bluetooth
         basePath: "Status.Bluetooth"
+        modelData: mySettingsModel.Bluetooth
     }
     StatusPreview {
         id: alarm
         basePath: "Status.Alarm"
+        modelData: mySettingsModel.Alarm
     }
     StatusPreview {
         id: lock
         basePath: "Status.Lock"
+        modelData: mySettingsModel.Locked
     }
     StatusPreview {
         id: dnd
         basePath: "Status.DoNotDisturb"
+        modelData: mySettingsModel.DND
     }
 
     // Battery
@@ -110,20 +120,9 @@ Item {
         id: batteryIconPreview
         basePath: "Battery.Icon"
     }
-    BaseXYPreview {
+    AdvancedXYPreview {
         id: batteryTextPreview
         basePath: "Battery.Text"
-    }
-
-    Component.onCompleted: {
-        steps.modelData = Qt.binding(function () {
-            return app.globalSettings.Steps
-        })
-        calories.modelData = Qt.binding(function () {
-            return app.globalSettings.Calories
-        })
-        pulse.modelData = Qt.binding(function () {
-            return app.globalSettings.Pulse
-        })
+        modelData: mySettingsModel.Battery
     }
 }

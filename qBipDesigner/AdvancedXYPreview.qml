@@ -9,8 +9,8 @@ Item {
     property int modelData
 
     Rectangle {
-        x: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).X
-        y: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).Y
+        x: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftX
+        y: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftY
         border.color: "white"
         border.width: 2
 
@@ -33,7 +33,7 @@ Item {
                 console.log("Eval2:" + fileHelper.getFilename(
                                 Utils.getNestedValue(
                                     jsonParser_lcl,
-                                    basePath).ImageIndex + modelData + '.png'))
+                                    basePath).ImageIndex + modelData - 1 + '.png'))
             }
         }
     }

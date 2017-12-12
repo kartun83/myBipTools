@@ -41,4 +41,18 @@ Page1Form {
     //        //ctx.closePath()
     //        ctx.stroke()
     //    }
+    function resizePreview() {
+        console.log("Resizing:", dpScaledPreview.height / dpReqHeight,
+                    dpScaledPreview.width / dpReqWidth)
+        console.log("Scaled rect:" + dpScaledRect.width + ':' + dpScaledRect.height)
+        dpScaledPreview.scale = Math.min(dpScaledRect.height / dpReqHeight,
+                                         dpScaledRect.width / dpReqWidth)
+    }
+
+    //    function resizePreviewMax() {
+    //        console.log("Responding to maximize")
+    //        console.log("Scaled rect2:" + dpScaledRect.width + ':' + dpScaledRect.height)
+    //        dpScaledPreview.scale = Math.max(dpScaledRect.height / dpReqHeight,
+    //                                         dpScaledRect.width / dpReqWidth)
+    //    }
 }

@@ -11,6 +11,8 @@ Item {
     //    property alias jsonData: jsonData.text
     property int dpReqHeight: 178
     property int dpReqWidth: 178
+    property alias dpScaledPreview: designPreviewScaled
+    property alias dpScaledRect: dpScaledRect
     //    property alias gridCanvas: drawingCanvas
     //    property alias dpCanvas: designPreviewScaled
     ColumnLayout {
@@ -111,24 +113,25 @@ Item {
 
         target: dpScaledRect
 
-        onWidthChanged: {
-            console.log("Resizing:", dpScaledRect.height / dpReqHeight,
-                        dpScaledRect.width / dpReqWidth)
-            designPreviewScaled.scale = Math.min(
-                        dpScaledRect.height / dpReqHeight,
-                        dpScaledRect.width / dpReqWidth)
-        }
+        onWidthChanged: resizePreview() //{
+        //            console.log("Resizing:", dpScaledRect.height / dpReqHeight,
+        //                        dpScaledRect.width / dpReqWidth)
+        //            designPreviewScaled.scale = Math.min(
+        //                        dpScaledRect.height / dpReqHeight,
+        //                        dpScaledRect.width / dpReqWidth)
+        //        }
     }
 
     Connections {
         target: appWindow
 
-        onVisibleChanged: {
-            console.log("On visible changed")
-        }
-
+        //        onVisibleChanged: {
+        //            console.log("On visible changed")
+        //        }
         onWindowStateChanged: {
-            dpScaledRect.onWidthChanged()
+            console.log("React on window state changed from Page1")
+            //            dpScaledRect.onWidthChanged()
+            resizePreview()
         }
     }
 }
