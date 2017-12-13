@@ -6,27 +6,41 @@ Item {
     id: baseImg
     property string basePath
     property var jsonParser_lcl: jsonParser
+    property alias modelData: itemModel.mydata
+
+    ListModel {
+        id: itemModel
+        property int mydata
+
+        onMydataChanged: {
+            itemModel.clear()
+            var string = mydata.toString()
+            for (var i = 0; i < string.length; i++) {
+                itemModel.append({
+                                     num: Number(string[i])
+                                 })
+            }
+        }
+    }
 
     Rectangle {
-        x: Utils.getNestedValue(parent.jsonParser_lcl,
-                                parent.basePath + '.OneLine.Number').TopLeftX
-        y: Utils.getNestedValue(parent.jsonParser_lcl,
-                                parent.basePath + '.OneLine.Number').TopLeftY
+        x: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftX
+        y: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftY
         border.color: "white"
         border.width: 2
 
-
-        Image {
-            id: timeImage
-            source: fileHelper.getFilename(
-                        Utils.getNestedValue(
-                            jsonParser_lcl,
-                            basePath + '.OneLine.Number').ImageIndex + '.png')
-
-            //            onSourceChanged: {
-            //                console.log("Eval3:" + Utils.getNestedValue(jsonParser_lcl,
-            //                                                            basePath))
-            //            }
+        Row {
+            spacing: Utils.getNestedValue(jsonParser_lcl, basePath).Spacing
+            Repeater {
+                model: itemModel
+                Image {
+                    id: timeImage
+                    source: fileHelper.getFilename(
+                                Utils.getNestedValue(
+                                    jsonParser_lcl,
+                                    basePath).ImageIndex + modelData + '.png')
+                }
+            }
         }
         MouseArea {
             anchors.fill: parent
@@ -35,7 +49,7 @@ Item {
                 console.log("Eval2:" + fileHelper.getFilename(
                                 Utils.getNestedValue(
                                     jsonParser_lcl,
-                                    basePath).ImageIndex + '.png'))
+                                    basePath).ImageIndex + modelData - 1 + '.png'))
             }
         }
     }

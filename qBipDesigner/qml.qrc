@@ -17,5 +17,7 @@
         <file>SettingsDataModel.js</file>
         <file>AdvancedXYPreview.qml</file>
         <file>TimePreview.qml</file>
+        <file>BatteryIconPreview.qml</file>
+        <file>DistancePreview.qml</file>
     </qresource>
 </RCC>

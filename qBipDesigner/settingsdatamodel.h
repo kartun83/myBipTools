@@ -19,6 +19,7 @@ class SettingsDataModel : public QObject
     Q_PROPERTY(bool DND READ DND WRITE setDND NOTIFY DNDChanged)
     Q_PROPERTY(bool Locked READ locked WRITE setLocked NOTIFY LockedChanged)
     Q_PROPERTY(int dayNumber READ dayNumber NOTIFY dayNumberChanged STORED false)
+    Q_PROPERTY(int Distance READ Distance WRITE setDistance NOTIFY DistanceChanged)
 
 public:
     explicit SettingsDataModel(QObject *parent = nullptr);
@@ -58,6 +59,9 @@ public:
     bool locked() const;
     void setLocked(bool locked);
 
+    int Distance() const;
+    void setDistance(int distance);
+
 signals:
     void BatteryChanged(const int &newBattery);
     void StepsChanged(const int &newSteps);
@@ -71,6 +75,7 @@ signals:
     void DNDChanged(const bool &newDND);
     void LockedChanged(const bool &newLocked);
     void dayNumberChanged(const int &newDayNumber);
+    void DistanceChanged(const int &newDistance);
 
 public slots:
 
@@ -80,6 +85,7 @@ private:
     int m_stepsGoal;
     int m_calories;
     int m_pulse;
+    int m_distance;
     bool m_alarm;
     bool m_bluetooth;
     bool m_dnd;

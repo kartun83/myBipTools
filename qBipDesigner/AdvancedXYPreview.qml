@@ -6,7 +6,22 @@ Item {
     id: baseImg
     property string basePath
     property var jsonParser_lcl: jsonParser
-    property int modelData
+    property alias modelData: itemModel.mydata
+
+    ListModel {
+        id: itemModel
+        property int mydata
+
+        onMydataChanged: {
+            itemModel.clear()
+            var string = mydata.toString()
+            for (var i = 0; i < string.length; i++) {
+                itemModel.append({
+                                     num: Number(string[i])
+                                 })
+            }
+        }
+    }
 
     Rectangle {
         x: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftX
@@ -14,17 +29,18 @@ Item {
         border.color: "white"
         border.width: 2
 
-        Image {
-            id: timeImage
-            source: fileHelper.getFilename(
-                        Utils.getNestedValue(
-                            jsonParser_lcl,
-                            basePath).ImageIndex + modelData + '.png')
-
-            //            onSourceChanged: {
-            //                console.log("Eval3:" + Utils.getNestedValue(jsonParser_lcl,
-            //                                                            basePath))
-            //            }
+        Row {
+            spacing: Utils.getNestedValue(jsonParser_lcl, basePath).Spacing
+            Repeater {
+                model: itemModel
+                Image {
+                    id: timeImage
+                    source: fileHelper.getFilename(
+                                Utils.getNestedValue(
+                                    jsonParser_lcl,
+                                    basePath).ImageIndex + modelData + '.png')
+                }
+            }
         }
         MouseArea {
             anchors.fill: parent

@@ -10,6 +10,7 @@ SettingsDataModel::SettingsDataModel(QObject *parent) : QObject(parent)
     m_pulse = 115;
     m_steps = 12098;
     m_stepsGoal = 15000;
+    m_distance = 1024;
     m_time = QTime::currentTime().toString("hh:mm:ss");
     m_date = QDate::currentDate().toString("dd.MM.yyyy");
     m_alarm = m_bluetooth = m_dnd = m_locked = true;
@@ -22,7 +23,7 @@ int SettingsDataModel::battery() const
 
 void SettingsDataModel::setBattery(int battery)
 {
-    if (battery >0 && battery != m_battery)
+    if (battery >=0 && battery != m_battery)
     {
     m_battery = battery;
     emit BatteryChanged(m_battery);
@@ -162,4 +163,19 @@ void SettingsDataModel::setLocked(bool locked)
 {
     m_locked = locked;
     emit LockedChanged(m_locked);
+}
+
+int SettingsDataModel::Distance() const
+{
+    return m_distance;
+}
+
+void SettingsDataModel::setDistance(int distance)
+{
+    if (distance >= 0 && distance != m_distance)
+    {
+        m_distance = distance;
+        emit DistanceChanged(m_distance);
+    }
+
 }

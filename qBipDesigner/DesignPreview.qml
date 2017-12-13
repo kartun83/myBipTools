@@ -77,8 +77,9 @@ Item {
     // Date
     DatePreview {
         id: dateTextPreview
-        basePath: 'Date.MonthAndDay.OneLine'
-        //modelData: mySettingsModel.Date
+        //basePath: 'Date.MonthAndDay.OneLine'
+        basePath: 'MonthAndDay.Separate'
+        modelData: mySettingsModel.Date
     }
 
     BaseXYPreview {
@@ -104,6 +105,12 @@ Item {
         modelData: mySettingsModel.Pulse
     }
 
+    DistancePreview {
+        id: distance
+        basePath: "Activity.Distance"
+        modelData: mySettingsModel.Distance
+    }
+
     // Status Icons
     StatusPreview {
         id: bluetooth
@@ -127,9 +134,10 @@ Item {
     }
 
     // Battery
-    BaseXYPreview {
+    BatteryIconPreview {
         id: batteryIconPreview
         basePath: "Battery.Icon"
+        modelData: mySettingsModel.Battery
     }
     AdvancedXYPreview {
         id: batteryTextPreview

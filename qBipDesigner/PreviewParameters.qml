@@ -59,6 +59,12 @@ PreviewParametersForm {
 
     Binding {
         target: mySettingsModel
+        property: "Distance"
+        value: distanceEditText
+    }
+
+    Binding {
+        target: mySettingsModel
         property: "Date"
         value: dateEditText
     }

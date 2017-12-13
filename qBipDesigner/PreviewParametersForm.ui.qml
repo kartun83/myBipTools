@@ -13,6 +13,7 @@ Item {
     property alias dateEditText: dateEdit.text
     property alias timeEditText: timeEdit.text
     property alias pulseEditText: pulseEdit.text
+    property alias distanceEditText: distanceEdit.text
     property alias alarmCheck: alarmSwitch.checked
     property alias bluetoothCheck: bluetoothSwitch.checked
     property alias dndCheck: dndSwitch.checked
@@ -171,6 +172,21 @@ Item {
                     Layout.preferredWidth: 80
                     //height: 20
                     text: mySettingsModel.Pulse //qsTr("")
+                    font.pixelSize: 12
+                }
+
+                Text {
+                    id: text8
+                    text: qsTr("Distance")
+                    //anchors.verticalCenter: calloriesEdit.verticalCenter
+                    font.pixelSize: 12
+                }
+
+                TextField {
+                    id: distanceEdit
+                    Layout.preferredWidth: 80
+                    //height: 20
+                    text: mySettingsModel.Distance //qsTr("")
                     font.pixelSize: 12
                 }
             }
