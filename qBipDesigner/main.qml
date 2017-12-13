@@ -1,7 +1,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
-import MyCustomClasses 1.0
+import MyBipTools 1.0
 
 import "Utitilies.js" as Utils
 
@@ -14,6 +14,7 @@ ApplicationWindow {
     property ApplicationWindow appWindow: app
     property var jsonParser
     property var jsonData
+    property var arr: myAlignment.AlignmentMap
 
     //property var globalSettings: Settings
     FileHelper {
@@ -29,7 +30,10 @@ ApplicationWindow {
 
     Component.onCompleted: {
 
-        console.log("Default settings:" + mySettingsModel)
+        console.log("Default settings:")
+        for (var prop in mySettingsModel) {
+            console.log("Settings item:", prop, "=", mySettingsModel[prop])
+        }
     }
 
     //    Component.onCompleted: {

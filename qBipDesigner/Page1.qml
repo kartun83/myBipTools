@@ -1,4 +1,4 @@
-import QtQuick 2.7
+import QtQuick 2.9
 import QtQuick.Dialogs 1.2
 
 Page1Form {

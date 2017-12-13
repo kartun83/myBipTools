@@ -2,6 +2,7 @@
 #define SETTINGSDATAMODEL_H
 
 #include <QObject>
+#include <QtQml>
 
 class SettingsDataModel : public QObject
 {
@@ -20,9 +21,16 @@ class SettingsDataModel : public QObject
     Q_PROPERTY(bool Locked READ locked WRITE setLocked NOTIFY LockedChanged)
     Q_PROPERTY(int dayNumber READ dayNumber NOTIFY dayNumberChanged STORED false)
     Q_PROPERTY(int Distance READ Distance WRITE setDistance NOTIFY DistanceChanged)
+    Q_PROPERTY(int WeatherDay READ WeatherDay WRITE setWeatherDay NOTIFY WeatherDayChanged)
+    Q_PROPERTY(int WeatherNight READ WeatherNight WRITE setWeatherNight NOTIFY WeatherNightChanged)
 
 public:
     explicit SettingsDataModel(QObject *parent = nullptr);
+
+    static void declareQML()
+    {
+        qmlRegisterType<SettingsDataModel>("MyBipTools", 1, 0, "Settings");
+    }
 
     int battery() const;
     void setBattery(int battery);
@@ -62,6 +70,12 @@ public:
     int Distance() const;
     void setDistance(int distance);
 
+    int WeatherDay() const;
+    void setWeatherDay(int weather_day);
+
+    int WeatherNight() const;
+    void setWeatherNight(int weather_night);
+
 signals:
     void BatteryChanged(const int &newBattery);
     void StepsChanged(const int &newSteps);
@@ -76,6 +90,8 @@ signals:
     void LockedChanged(const bool &newLocked);
     void dayNumberChanged(const int &newDayNumber);
     void DistanceChanged(const int &newDistance);
+    void WeatherNightChanged(const int&newWeatherNight);
+    void WeatherDayChanged(const int&newWeatherDay);
 
 public slots:
 
@@ -86,6 +102,8 @@ private:
     int m_calories;
     int m_pulse;
     int m_distance;
+    int m_weather_day;
+    int m_weather_night;
     bool m_alarm;
     bool m_bluetooth;
     bool m_dnd;

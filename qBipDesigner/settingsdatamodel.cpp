@@ -179,3 +179,25 @@ void SettingsDataModel::setDistance(int distance)
     }
 
 }
+
+int SettingsDataModel::WeatherDay() const
+{
+    return m_weather_day;
+}
+
+void SettingsDataModel::setWeatherDay(int weather_day)
+{
+    m_weather_day = weather_day;
+    emit WeatherDayChanged(m_weather_day);
+}
+
+int SettingsDataModel::WeatherNight() const
+{
+    return m_weather_night;
+}
+
+void SettingsDataModel::setWeatherNight(int weather_night)
+{
+    m_weather_night = weather_night;
+    emit WeatherNightChanged(m_weather_night);
+}

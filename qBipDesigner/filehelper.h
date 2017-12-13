@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QFile>
+#include <QtQml>
 
 class FileHelper : public QObject
 {
@@ -14,6 +15,10 @@ class FileHelper : public QObject
     Q_PROPERTY(QString fileContent READ fileContent WRITE setFileContent NOTIFY fileContentChanged)
 public:
     explicit FileHelper(QObject *parent = nullptr);
+    static void declareQML()
+    {
+        qmlRegisterType<FileHelper>("MyBipTools", 1, 0, "FileHelper");
+    }
     QString filename() const;
     QString fileContent() const;
 

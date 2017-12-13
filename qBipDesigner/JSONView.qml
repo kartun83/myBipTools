@@ -4,6 +4,12 @@ import QtQuick.Layouts 1.3
 
 Item {
     anchors.fill: parent
+    Shortcut {
+        id: refreshShortcut
+        sequence: "Ctrl+R"
+        onActivated: refreshButton.onClicked()
+    }
+
     ColumnLayout {
         anchors.fill: parent
 
@@ -45,11 +51,12 @@ Item {
                     wrapMode: Text.WordWrap
                     selectByMouse: true
                     text: app.jsonData
+                    persistentSelection: true
 
                     //anchors.fill: parent
                     //                width: parent.width
                     //                height: parent.height
-                    color: "blue"
+                    color: "#000eff"
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                     onCursorRectangleChanged: flick.ensureVisible(
@@ -69,7 +76,7 @@ Item {
             Button {
                 id: refreshButton
 
-                text: qsTr("Refresh")
+                text: qsTr("Refresh (" + refreshShortcut.sequence + ")")
 
                 anchors.fill: parent
                 Layout.alignment: Qt.AlignLeft | Qt.AlignBottom

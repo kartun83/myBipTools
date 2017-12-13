@@ -14,7 +14,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
     filehelper.cpp \
-    settingsdatamodel.cpp
+    settingsdatamodel.cpp \
+    alignment.cpp
 
 RESOURCES += qml.qrc
 
@@ -33,4 +34,5 @@ DISTFILES +=
 
 HEADERS += \
     filehelper.h \
-    settingsdatamodel.h
+    settingsdatamodel.h \
+    alignment.h

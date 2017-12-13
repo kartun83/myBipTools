@@ -3,6 +3,7 @@
 #include <QtQml>
 #include "filehelper.h"
 #include "settingsdatamodel.h"
+#include "alignment.h"
 
 int main(int argc, char *argv[])
 {
@@ -20,14 +21,20 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     // Declaring your C++ class to the QML system
-    qmlRegisterType<FileHelper>("MyCustomClasses", 1, 0, "FileHelper");
-    qmlRegisterType<SettingsDataModel>("MyCustomClasses", 1, 0, "Settings");
+    //qmlRegisterType<FileHelper>("MyCustomClasses", 1, 0, "FileHelper");
+    //qmlRegisterType<SettingsDataModel>("MyCustomClasses", 1, 0, "Settings");
+    FileHelper::declareQML();
+    SettingsDataModel::declareQML();
+    Alignment::declareQML();
 
     QQmlApplicationEngine engine;
 
     SettingsDataModel* m_model = new SettingsDataModel();
+    Alignment* m_alignment = new Alignment();
     QQmlContext *ctxt = engine.rootContext();
         ctxt->setContextProperty("mySettingsModel", m_model);
+        ctxt->setContextProperty("myAlignment", m_alignment);
+
 
 
     engine.load(QUrl(QLatin1String("qrc:/main.qml")));
