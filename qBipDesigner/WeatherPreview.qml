@@ -19,28 +19,39 @@ Item {
             var string = mydata.toString()
             for (var i = 0; i < string.length; i++) {
                 itemModel.append({
-                                     num: Number(string[i])
+                                     num: string[i]
                                  })
             }
         }
     }
 
     Rectangle {
-        x: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftX
-        y: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftY
+        x: Utils.getNestedValue(parent.jsonParser_lcl,
+                                parent.basePath + '.Number').TopLeftX
+        y: Utils.getNestedValue(parent.jsonParser_lcl,
+                                parent.basePath + '.Number').TopLeftY
         border.color: "white"
         border.width: 2
 
         Row {
-            spacing: Utils.getNestedValue(jsonParser_lcl, basePath).Spacing
+            spacing: Utils.getNestedValue(jsonParser_lcl,
+                                          basePath + '.Number').Spacing
             Repeater {
                 model: itemModel
                 Image {
                     id: timeImage
-                    source: fileHelper.getFilename(
-                                Utils.getNestedValue(
-                                    jsonParser_lcl,
-                                    basePath).ImageIndex + modelData + '.png')
+                    source: if (modelData === '-') {
+                                fileHelper.getFilename(
+                                            Utils.getNestedValue(
+                                                jsonParser_lcl,
+                                                basePath).MinusImageIndex + '.png')
+                            } else {
+                                fileHelper.getFilename(
+                                            Utils.getNestedValue(
+                                                jsonParser_lcl,
+                                                basePath + '.Number').ImageIndex + Number(
+                                                modelData) + '.png')
+                            }
                 }
             }
         }

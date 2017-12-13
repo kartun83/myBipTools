@@ -71,6 +71,24 @@ PreviewParametersForm {
 
     Binding {
         target: mySettingsModel
+        property: "WeatherDay"
+        value: weatherDayText
+    }
+
+    Binding {
+        target: mySettingsModel
+        property: "WeatherNight"
+        value: weatherNightText
+    }
+
+    Binding {
+        target: mySettingsModel
+        property: "WeatherCurrent"
+        value: weatherCurrentText
+    }
+
+    Binding {
+        target: mySettingsModel
         property: "Alarm"
         value: alarmCheck
     }

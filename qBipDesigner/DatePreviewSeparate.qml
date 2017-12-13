@@ -7,6 +7,8 @@ Item {
     property string basePath
     property var jsonParser_lcl: jsonParser
     property alias modelData: itemModel.mydata
+    property string suffix
+    property string checkAttr
 
     ListModel {
         id: itemModel
@@ -14,23 +16,36 @@ Item {
 
         onMydataChanged: {
             itemModel.clear()
-            var string = mydata.toString()
+            console.log("Checking:" + Utils.getNestedValue(
+                            jsonParser_lcl, basePath + '.' + checkAttr))
+            var check = Utils.getNestedValue(jsonParser_lcl,
+                                             basePath + '.' + checkAttr)
+            var numberX = Number(mydata)
+            var string = parseInt(numberX, 10).toString()
+            if (check == 1 && numberX < 10) {
+                // Beware of leading zero
+                string = '0' + parseInt(mydata, 10).toString()
+            }
+
             for (var i = 0; i < string.length; i++) {
                 itemModel.append({
-                                     num: Number(string[i])
+                                     num: string[i]
                                  })
             }
         }
     }
 
     Rectangle {
-        x: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftX
-        y: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftY
+        x: Utils.getNestedValue(parent.jsonParser_lcl,
+                                basePath + '.' + suffix).TopLeftX
+        y: Utils.getNestedValue(parent.jsonParser_lcl,
+                                basePath + '.' + suffix).TopLeftY
         border.color: "white"
         border.width: 2
 
         Row {
-            spacing: Utils.getNestedValue(jsonParser_lcl, basePath).Spacing
+            spacing: Utils.getNestedValue(jsonParser_lcl,
+                                          basePath + '.' + suffix).Spacing
             Repeater {
                 model: itemModel
                 Image {
@@ -38,7 +53,8 @@ Item {
                     source: fileHelper.getFilename(
                                 Utils.getNestedValue(
                                     jsonParser_lcl,
-                                    basePath).ImageIndex + modelData + '.png')
+                                    basePath + '.' + suffix).ImageIndex + Number(
+                                    modelData) + '.png')
                 }
             }
         }

@@ -14,6 +14,9 @@ Item {
     property alias timeEditText: timeEdit.text
     property alias pulseEditText: pulseEdit.text
     property alias distanceEditText: distanceEdit.text
+    property alias weatherDayText: weatherDayEdit.text
+    property alias weatherNightText: weatherNightEdit.text
+    property alias weatherCurrentText: weatherCurrentEdit.text
     property alias alarmCheck: alarmSwitch.checked
     property alias bluetoothCheck: bluetoothSwitch.checked
     property alias dndCheck: dndSwitch.checked
@@ -89,6 +92,18 @@ Item {
                     id: batteryEdit
                     Layout.preferredWidth: 80
                     text: mySettingsModel.Battery //qsTr("")
+                    font.pixelSize: 12
+                }
+                Text {
+                    id: text11
+                    text: qsTr("Weather current")
+                    font.pixelSize: 12
+                }
+
+                TextField {
+                    id: weatherCurrentEdit
+                    Layout.preferredWidth: 80
+                    text: mySettingsModel.WeatherCurrent //qsTr("")
                     font.pixelSize: 12
                 }
                 Text {

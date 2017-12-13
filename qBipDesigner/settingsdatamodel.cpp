@@ -13,6 +13,7 @@ SettingsDataModel::SettingsDataModel(QObject *parent) : QObject(parent)
     m_distance = 1024;
     m_weather_day = -5;
     m_weather_night = 10;
+    m_weather_current = 0;
     m_time = QTime::currentTime().toString(timeFormat);
     m_date = QDate::currentDate().toString(dateFormat);
     m_alarm = m_bluetooth = m_dnd = m_locked = true;
@@ -25,7 +26,7 @@ int SettingsDataModel::battery() const
 
 void SettingsDataModel::setBattery(int battery)
 {
-    if (battery >=0 && battery != m_battery)
+    if (battery >=0 && battery <=100 && battery != m_battery)
     {
     m_battery = battery;
     emit BatteryChanged(m_battery);
@@ -112,6 +113,8 @@ void SettingsDataModel::setDate(const QString &date)
         m_date = date;
         emit DateChanged(m_date);
         emit dayNumberChanged(dayNumber());
+        emit dateDayChanged(dateDay());
+        emit dateMonthChanged(dateMonth());
     }
 }
 
@@ -119,8 +122,20 @@ int SettingsDataModel::dayNumber() const
 {
     //QDate* date = new QDate();
     //date.
-    qDebug() << QDate::fromString(m_date, "dd.MM.yyyy").dayOfWeek();
-    return QDate::fromString(m_date, "dd.MM.yyyy").dayOfWeek() - 1;
+    qDebug() << QDate::fromString(m_date, dateFormat).dayOfWeek();
+    return QDate::fromString(m_date, dateFormat).dayOfWeek() - 1;
+}
+
+int SettingsDataModel::dateDay() const
+{
+    qDebug() << "Date day" << QDate::fromString(m_date, dateFormat).day();
+    return QDate::fromString(m_date, dateFormat).day();
+}
+
+int SettingsDataModel::dateMonth() const
+{
+    qDebug() << "Date month" << QDate::fromString(m_date, dateFormat).month();
+    return QDate::fromString(m_date, dateFormat).month();
 }
 
 bool SettingsDataModel::alarm() const
@@ -202,4 +217,15 @@ void SettingsDataModel::setWeatherNight(int weather_night)
 {
     m_weather_night = weather_night;
     emit WeatherNightChanged(m_weather_night);
+}
+
+int SettingsDataModel::WeatherCurrent() const
+{
+    return m_weather_current;
+}
+
+void SettingsDataModel::setWeatherCurrent(int weather_current)
+{
+    m_weather_current = weather_current;
+    emit WeatherCurrentChanged(m_weather_current);
 }

@@ -75,17 +75,31 @@ Item {
         idx: 7
     }
     // Date
-    DatePreview {
-        id: dateTextPreview
-        //basePath: 'Date.MonthAndDay.OneLine'
-        basePath: 'MonthAndDay.Separate'
-        modelData: mySettingsModel.Date
+    DatePreviewSeparate {
+        id: dateTextPreviewSeparate1
+        basePath: 'Date.MonthAndDay'
+        modelData: mySettingsModel.DateMonth
+        suffix: 'Separate.Month'
+        checkAttr: 'TwoDigitsMonth'
+    }
+    DatePreviewSeparate {
+        id: dateTextPreviewSeparate2
+        basePath: 'Date.MonthAndDay'
+        modelData: mySettingsModel.DateDay
+        suffix: 'Separate.Day'
+        checkAttr: 'TwoDigitsDay'
     }
 
+    //    DatePreview {
+    //        id: dateTextPreview2
+    //        basePath: 'Date.MonthAndDay.OneLine'
+    //        //basePath: 'MonthAndDay.Separate'
+    //        modelData: mySettingsModel.Date
+    //    }
     BaseXYPreview {
         basePath: 'Date.WeekDay'
         id: dateWeekdayPreview
-        modelData: mySettingsModel.dayNumber
+        modelData: mySettingsModel.DayNumber
     }
 
     // Activity
@@ -106,6 +120,12 @@ Item {
     }
 
     // Weather
+    WeatherPreview {
+        id: weatherCurrent
+        basePath: "Weather.Temperature.Current"
+        modelData: mySettingsModel.WeatherCurrent
+    }
+
     WeatherPreview {
         id: weatherToday
         basePath: "Weather.Temperature.Today.Separate.Day"

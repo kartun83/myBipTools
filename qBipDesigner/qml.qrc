@@ -13,7 +13,7 @@
         <file>ActivityPreview.qml</file>
         <file>BaseXYPreview.qml</file>
         <file>StatusPreview.qml</file>
-        <file>DatePreview.qml</file>
+        <file>DatePreviewSeparate.qml</file>
         <file>AdvancedXYPreview.qml</file>
         <file>TimePreview.qml</file>
         <file>BatteryIconPreview.qml</file>

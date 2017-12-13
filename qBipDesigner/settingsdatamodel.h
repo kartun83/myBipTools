@@ -15,14 +15,17 @@ class SettingsDataModel : public QObject
     Q_PROPERTY(int Pulse READ pulse WRITE setPulse NOTIFY PulseChanged FINAL)
     Q_PROPERTY(QString Time READ time WRITE setTime NOTIFY TimeChanged FINAL)
     Q_PROPERTY(QString Date READ date WRITE setDate NOTIFY DateChanged FINAL)
-    Q_PROPERTY(bool Alarm READ alarm WRITE setAlarm NOTIFY AlarmChanged)
-    Q_PROPERTY(bool Bluetooth READ bluetooth WRITE setBluetooth NOTIFY BluetoothChanged)
-    Q_PROPERTY(bool DND READ DND WRITE setDND NOTIFY DNDChanged)
-    Q_PROPERTY(bool Locked READ locked WRITE setLocked NOTIFY LockedChanged)
-    Q_PROPERTY(int dayNumber READ dayNumber NOTIFY dayNumberChanged STORED false)
-    Q_PROPERTY(int Distance READ Distance WRITE setDistance NOTIFY DistanceChanged)
-    Q_PROPERTY(int WeatherDay READ WeatherDay WRITE setWeatherDay NOTIFY WeatherDayChanged)
-    Q_PROPERTY(int WeatherNight READ WeatherNight WRITE setWeatherNight NOTIFY WeatherNightChanged)
+    Q_PROPERTY(bool Alarm READ alarm WRITE setAlarm NOTIFY AlarmChanged FINAL)
+    Q_PROPERTY(bool Bluetooth READ bluetooth WRITE setBluetooth NOTIFY BluetoothChanged FINAL)
+    Q_PROPERTY(bool DND READ DND WRITE setDND NOTIFY DNDChanged FINAL)
+    Q_PROPERTY(bool Locked READ locked WRITE setLocked NOTIFY LockedChanged FINAL)
+    Q_PROPERTY(int DayNumber READ dayNumber NOTIFY dayNumberChanged STORED false FINAL)
+    Q_PROPERTY(int DateDay READ dateDay NOTIFY dateDayChanged STORED false FINAL)
+    Q_PROPERTY(int DateMonth READ dateMonth NOTIFY dateMonthChanged STORED false FINAL)
+    Q_PROPERTY(int Distance READ Distance WRITE setDistance NOTIFY DistanceChanged FINAL)
+    Q_PROPERTY(int WeatherDay READ WeatherDay WRITE setWeatherDay NOTIFY WeatherDayChanged FINAL)
+    Q_PROPERTY(int WeatherNight READ WeatherNight WRITE setWeatherNight NOTIFY WeatherNightChanged FINAL)
+    Q_PROPERTY(int WeatherCurrent READ WeatherCurrent WRITE setWeatherCurrent NOTIFY WeatherCurrentChanged FINAL)
 
 public:
     explicit SettingsDataModel(QObject *parent = nullptr);
@@ -54,6 +57,8 @@ public:
     void setDate(const QString &date);
 
     int dayNumber() const;
+    int dateDay() const;
+    int dateMonth() const;
 
     bool alarm() const;
     void setAlarm(bool alarm);
@@ -76,6 +81,9 @@ public:
     int WeatherNight() const;
     void setWeatherNight(int weather_night);
 
+    int WeatherCurrent() const;
+    void setWeatherCurrent(int WeatherCurrent);
+
 signals:
     void BatteryChanged(const int &newBattery);
     void StepsChanged(const int &newSteps);
@@ -89,9 +97,12 @@ signals:
     void DNDChanged(const bool &newDND);
     void LockedChanged(const bool &newLocked);
     void dayNumberChanged(const int &newDayNumber);
+    void dateDayChanged(const int &newDateDay);
+    void dateMonthChanged(const int &newDateMonth);
     void DistanceChanged(const int &newDistance);
     void WeatherNightChanged(const int&newWeatherNight);
     void WeatherDayChanged(const int&newWeatherDay);
+    void WeatherCurrentChanged(const int&newWeatherCurrent);
 
 public slots:
 
@@ -102,6 +113,7 @@ private:
     int m_calories;
     int m_pulse;
     int m_distance;
+    int m_weather_current;
     int m_weather_day;
     int m_weather_night;
     bool m_alarm;
