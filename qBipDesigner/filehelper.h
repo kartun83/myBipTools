@@ -29,6 +29,7 @@ public:
     // Accessible from QML
     Q_INVOKABLE void saveFile();
     Q_INVOKABLE void loadFile();
+    Q_INVOKABLE QString validateJson(QString json);
 
     Q_INVOKABLE QString getFilename(const QString name);
 

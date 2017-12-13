@@ -11,8 +11,10 @@ SettingsDataModel::SettingsDataModel(QObject *parent) : QObject(parent)
     m_steps = 12098;
     m_stepsGoal = 15000;
     m_distance = 1024;
-    m_time = QTime::currentTime().toString("hh:mm:ss");
-    m_date = QDate::currentDate().toString("dd.MM.yyyy");
+    m_weather_day = -5;
+    m_weather_night = 10;
+    m_time = QTime::currentTime().toString(timeFormat);
+    m_date = QDate::currentDate().toString(dateFormat);
     m_alarm = m_bluetooth = m_dnd = m_locked = true;
 }
 
@@ -93,7 +95,7 @@ QString SettingsDataModel::time() const
 
 void SettingsDataModel::setTime(const QString &time)
 {
-    if ( QTime::fromString(time,"hh:mm:ss").isValid() ) {
+    if ( QTime::fromString(time,timeFormat).isValid() ) {
         m_time = time;
         emit TimeChanged(m_time);
     }
@@ -106,7 +108,7 @@ QString SettingsDataModel::date() const
 
 void SettingsDataModel::setDate(const QString &date)
 {
-    if (QDate::fromString(date, "dd.MM.yyyy").isValid()) {
+    if (QDate::fromString(date, dateFormat).isValid()) {
         m_date = date;
         emit DateChanged(m_date);
         emit dayNumberChanged(dayNumber());

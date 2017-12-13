@@ -2,6 +2,9 @@
 #include <QUrl>
 #include <QDebug>
 #include <QFileInfo>
+#include <QStringRef>
+#include <QJsonDocument>
+#include <QJsonParseError>
 
 FileHelper::FileHelper(QObject *parent) : QObject(parent)
 {
@@ -90,12 +93,27 @@ void FileHelper::loadFile()
         QTextStream inStream(&file);
         QString line;
         m_fileContent= inStream.readAll();
+        validateJson(m_fileContent);
     }
     else
     {
         qDebug() << "Reading failed";
     }
     file.close();
+}
+
+QString FileHelper::validateJson(QString json)
+{
+    QJsonParseError *error = new QJsonParseError();
+    QJsonDocument doc = QJsonDocument::fromJson(json.toUtf8(), error);
+    QString result;
+    if (error->error != QJsonParseError::NoError)
+    {
+        QStringRef subString = json.midRef(error->offset - 5, error->offset + 5);
+        qDebug() << error->errorString() << ".Somewhere at:" << subString;
+        result = QString("%1.\n %2: %3").arg(error->errorString(), "Somewhere at",  json.mid(error->offset - 5, error->offset + 5));
+    }
+    return result;
 }
 
 QString FileHelper::getFilename(const QString name)

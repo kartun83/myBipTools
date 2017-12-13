@@ -110,6 +110,9 @@ private:
     bool m_locked;
     QString m_time;
     QString m_date;
+
+    const QString dateFormat = "dd.MM";
+    const QString timeFormat = "hh:mm:ss";
 };
 
 #endif // SETTINGSDATAMODEL_H

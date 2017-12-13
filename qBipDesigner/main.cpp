@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
     // Declaring your C++ class to the QML system
     //qmlRegisterType<FileHelper>("MyCustomClasses", 1, 0, "FileHelper");
-    //qmlRegisterType<SettingsDataModel>("MyCustomClasses", 1, 0, "Settings");
+    //qmlRegisterType<SettingsDataModel>("MyCustomClasses", 1, 0, "Settings");    
     FileHelper::declareQML();
     SettingsDataModel::declareQML();
     Alignment::declareQML();

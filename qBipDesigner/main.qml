@@ -1,6 +1,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
+import QtQuick.Dialogs 1.2
 import MyBipTools 1.0
 
 import "Utitilies.js" as Utils
@@ -21,6 +22,18 @@ ApplicationWindow {
         id: fileHelper
         //filename: textInput.text
         //onDirectoryChanged: fileDialog.notifyRefresh()
+    }
+
+    MessageDialog {
+        id: errorDialog
+        title: qsTr("JSon Parsing Error")
+        onAccepted: {
+            this.visible = false
+
+            //            console.log("And of course you could only agree.")
+            //            Qt.quit()
+        }
+        //Component.onCompleted: visible = true
     }
 
     //    DesignPreview {
@@ -55,5 +68,23 @@ ApplicationWindow {
     //    }
     onWindowStateChanged: {
         console.log("Window state changed")
+    }
+
+    function validateJson(json) {
+        try {
+            var error = fileHelper.validateJson(json)
+            if (error) {
+                throw error
+            }
+        } catch (e) {
+
+            //console.log(JSON.stringify(e))
+            //if (e.name == "SyntaxError") {
+            errorDialog.text = e
+            errorDialog.visible = true
+            console.log("Parse error:", e)
+            //} else
+            //    throw e
+        }
     }
 }

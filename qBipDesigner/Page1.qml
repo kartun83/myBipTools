@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Dialogs 1.2
+import MyBipTools 1.0
 
 Page1Form {
 
@@ -17,7 +18,9 @@ Page1Form {
             fileHelper.filename = fileDialog.fileUrl.toString()
             fileHelper.loadFile()
             jsonData = fileHelper.fileContent
+            app.validateJson(jsonData)
             jsonParser = JSON.parse(jsonData)
+
             console.log("Image:" + jsonParser.Background.Image.ImageIndex)
             //console.log(fileHelper.fileContent)
         }

@@ -105,6 +105,23 @@ Item {
         modelData: mySettingsModel.Pulse
     }
 
+    // Weather
+    WeatherPreview {
+        id: weatherToday
+        basePath: "Weather.Temperature.Today.Separate.Day"
+        modelData: mySettingsModel.WeatherDay
+    }
+    WeatherPreview {
+        id: weatherNight
+        basePath: "Weather.Temperature.Today.Separate.Night"
+        modelData: mySettingsModel.WeatherNight
+    }
+
+    //    WeatherPreview {
+    //        id: weatherToday
+    //        basePath: "Weather.Temperature.Today.Separate.Day"
+    //        modelData: mySettingsModel.Pulse
+    //    }
     DistancePreview {
         id: distance
         basePath: "Activity.Distance"

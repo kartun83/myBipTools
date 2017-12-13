@@ -75,24 +75,44 @@ Item {
                 TextField {
                     id: dateEdit
                     Layout.preferredWidth: 80
-                    //height: 20
                     text: mySettingsModel.Date
-                    z: 1 //qsTr("")
                     font.pixelSize: 12
                 }
 
                 Text {
                     id: text3
                     text: qsTr("Battery")
-                    //anchors.verticalCenter: batteryEdit.verticalCenter
                     font.pixelSize: 12
                 }
 
                 TextField {
                     id: batteryEdit
                     Layout.preferredWidth: 80
-                    //height: 20
                     text: mySettingsModel.Battery //qsTr("")
+                    font.pixelSize: 12
+                }
+                Text {
+                    id: text9
+                    text: qsTr("Weather day")
+                    font.pixelSize: 12
+                }
+
+                TextField {
+                    id: weatherDayEdit
+                    Layout.preferredWidth: 80
+                    text: mySettingsModel.WeatherDay //qsTr("")
+                    font.pixelSize: 12
+                }
+                Text {
+                    id: text10
+                    text: qsTr("Weather night")
+                    font.pixelSize: 12
+                }
+
+                TextField {
+                    id: weatherNightEdit
+                    Layout.preferredWidth: 80
+                    text: mySettingsModel.WeatherNight //qsTr("")
                     font.pixelSize: 12
                 }
             }

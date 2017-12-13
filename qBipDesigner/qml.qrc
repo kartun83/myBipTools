@@ -18,5 +18,6 @@
         <file>TimePreview.qml</file>
         <file>BatteryIconPreview.qml</file>
         <file>DistancePreview.qml</file>
+        <file>WeatherPreview.qml</file>
     </qresource>
 </RCC>

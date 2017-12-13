@@ -84,6 +84,7 @@ Item {
                 onClicked: {
                     console.log("Refreshing JSON from editor")
                     fileHelper.fileContent = jsonDataEdit.text
+                    app.validateJson(fileHelper.fileContent)
                     jsonParser = JSON.parse(jsonDataEdit.text)
                 }
             }
