@@ -229,3 +229,13 @@ void SettingsDataModel::setWeatherCurrent(int weather_current)
     m_weather_current = weather_current;
     emit WeatherCurrentChanged(m_weather_current);
 }
+
+bool SettingsDataModel::ShowGrid() const
+{
+    return m_showGrid;
+}
+
+void SettingsDataModel::setShowGrid(bool showGrid)
+{
+    m_showGrid = showGrid;
+}

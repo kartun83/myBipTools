@@ -48,6 +48,7 @@ Item {
             {
                 console.log("Clicked on" + timeImage)
                 borderBox.visible = !borderBox.visible
+                selectedElement = borderBox
             }
         }
     }

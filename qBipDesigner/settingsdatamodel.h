@@ -26,6 +26,7 @@ class SettingsDataModel : public QObject
     Q_PROPERTY(int WeatherDay READ WeatherDay WRITE setWeatherDay NOTIFY WeatherDayChanged FINAL)
     Q_PROPERTY(int WeatherNight READ WeatherNight WRITE setWeatherNight NOTIFY WeatherNightChanged FINAL)
     Q_PROPERTY(int WeatherCurrent READ WeatherCurrent WRITE setWeatherCurrent NOTIFY WeatherCurrentChanged FINAL)
+    Q_PROPERTY(bool ShowGrid READ ShowGrid WRITE setShowGrid NOTIFY ShowGridChanged)
 
 public:
     explicit SettingsDataModel(QObject *parent = nullptr);
@@ -84,6 +85,10 @@ public:
     int WeatherCurrent() const;
     void setWeatherCurrent(int WeatherCurrent);
 
+
+    bool ShowGrid() const;
+    void setShowGrid(bool showGrid);
+
 signals:
     void BatteryChanged(const int &newBattery);
     void StepsChanged(const int &newSteps);
@@ -103,6 +108,7 @@ signals:
     void WeatherNightChanged(const int&newWeatherNight);
     void WeatherDayChanged(const int&newWeatherDay);
     void WeatherCurrentChanged(const int&newWeatherCurrent);
+    void ShowGridChanged(const bool&newShowGrid);
 
 public slots:
 
@@ -120,6 +126,7 @@ private:
     bool m_bluetooth;
     bool m_dnd;
     bool m_locked;
+    bool m_showGrid;
     QString m_time;
     QString m_date;
 

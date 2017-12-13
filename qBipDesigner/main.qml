@@ -16,6 +16,7 @@ ApplicationWindow {
     property var jsonParser
     property var jsonData
     property var arr: myAlignment.AlignmentMap
+    property var selectedElement
 
     //property var globalSettings: Settings
     FileHelper {

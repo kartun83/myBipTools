@@ -19,5 +19,6 @@
         <file>BatteryIconPreview.qml</file>
         <file>DistancePreview.qml</file>
         <file>WeatherPreview.qml</file>
+        <file>ColorPanel.qml</file>
     </qresource>
 </RCC>

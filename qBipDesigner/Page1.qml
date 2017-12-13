@@ -29,6 +29,11 @@ Page1Form {
         }
         //Component.onCompleted: visible = true
     }
+    //    myCanvas.onPaint: {
+    //        var ctx = getContext("2d")
+    //        ctx.fillStyle = Qt.rgba(1, 0, 0, 1)
+    //        ctx.fillRect(0, 0, width, height)
+    //    }
 
     //    gridCanvas.onPaint: {
     //        var ctx = gridCanvas.getContext("2d")
@@ -52,10 +57,24 @@ Page1Form {
                                          dpScaledRect.width / dpReqWidth)
     }
 
-    //    function resizePreviewMax() {
-    //        console.log("Responding to maximize")
-    //        console.log("Scaled rect2:" + dpScaledRect.width + ':' + dpScaledRect.height)
-    //        dpScaledPreview.scale = Math.max(dpScaledRect.height / dpReqHeight,
-    //                                         dpScaledRect.width / dpReqWidth)
-    //    }
+    function drawGrid() {
+        if (mySettingsModel.ShowGrid == true) {
+            myCanvas.visible = true
+            var ctx = myCanvas.getContext("2d")
+            ctx.lineWidth = 2
+
+            //ctx.strokeStyle = ctx.createPattern(
+            //            "white", Qt.CrossPattern)//Qt.Dense7Pattern)
+            ctx.fillStyle = ctx.createPattern("white", Qt.CrossPattern)
+            ctx.beginPath()
+            //ctx.moveTo(10, 10)
+            //ctx.lineTo(30, 30)
+            ctx.fillRect(0, 0, designPreviewScaled.width,
+                         designPreviewScaled.height)
+
+            ctx.stroke()
+        } else {
+            myCanvas.visible = false
+        }
+    }
 }

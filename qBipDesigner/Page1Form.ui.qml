@@ -14,7 +14,7 @@ Item {
     property alias dpScaledPreview: designPreviewScaled
     property alias dpScaledRect: dpScaledRect
     //    property alias gridCanvas: drawingCanvas
-    //    property alias dpCanvas: designPreviewScaled
+    property alias myCanvas: myCanvas
     ColumnLayout {
         id: column
         anchors.fill: parent
@@ -73,24 +73,55 @@ Item {
             RowLayout {
                 id: rowLayout1
                 anchors.fill: parent
-                Rectangle {
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                    id: dpScaledRect
+                ColumnLayout {
+                    anchors.fill: parent
+                    //                Row {
+                    Rectangle {
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                        id: dpScaledRect
 
-                    color: "grey"
+                        color: "grey"
 
-                    //                    Canvas {
-                    //                        id: drawingCanvas
-                    //                        anchors.fill: parent
-                    DesignPreview {
-                        id: designPreviewScaled
-                        Layout.leftMargin: 10
-                        contolHeight: parent.height
-                        controlWidth: parent.width
-                        //                        }
+                        DesignPreview {
+                            id: designPreviewScaled
+                            Layout.leftMargin: 10
+                            contolHeight: parent.height
+                            controlWidth: parent.width
+                        }
+                        Canvas {
+                            id: myCanvas
+                            width: dpScaledRect.width
+                            height: dpScaledRect.height
+                            Layout.fillHeight: true
+                            Layout.fillWidth: true
+                            //                            onPaint: {
+                            //                                //if (mySettingsModel.ShowGrid == true) {
+                            //                                var ctx = getContext("2d")
+                            //                                ctx.lineWidth = 2
+                            //                                //ctx.strokeStyle = ctx.createPattern(
+                            //                                //            "white", Qt.CrossPattern)//Qt.Dense7Pattern)
+                            //                                ctx.fillStyle = ctx.createPattern(
+                            //                                            "white", Qt.CrossPattern)
+                            //                                ctx.beginPath()
+                            //                                //ctx.moveTo(10, 10)
+                            //                                //ctx.lineTo(30, 30)
+                            //                                ctx.fillRect(0, 0, designPreviewScaled,
+                            //                                             designPreviewScaled)
+                            //                                ctx.stroke()
+                            //                                //}
+                            //                            }
+                        }
                     }
                 }
+                ColorPanel {
+                    Layout.minimumHeight: 50
+                    Layout.minimumWidth: 50
+                    Layout.preferredHeight: 50
+                    Layout.preferredWidth: 50
+                    Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+                }
+
                 Rectangle {
                     Layout.fillHeight: true
                     //Layout.fillWidth: true
@@ -113,25 +144,20 @@ Item {
 
         target: dpScaledRect
 
-        onWidthChanged: resizePreview() //{
-        //            console.log("Resizing:", dpScaledRect.height / dpReqHeight,
-        //                        dpScaledRect.width / dpReqWidth)
-        //            designPreviewScaled.scale = Math.min(
-        //                        dpScaledRect.height / dpReqHeight,
-        //                        dpScaledRect.width / dpReqWidth)
-        //        }
+        onWidthChanged: resizePreview()
     }
 
     Connections {
         target: appWindow
-
-        //        onVisibleChanged: {
-        //            console.log("On visible changed")
-        //        }
         onWindowStateChanged: {
             console.log("React on window state changed from Page1")
             //            dpScaledRect.onWidthChanged()
             resizePreview()
         }
+    }
+
+    Connections {
+        target: myCanvas
+        onPaint: drawGrid()
     }
 }

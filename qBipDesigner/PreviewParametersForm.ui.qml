@@ -21,6 +21,7 @@ Item {
     property alias bluetoothCheck: bluetoothSwitch.checked
     property alias dndCheck: dndSwitch.checked
     property alias lockedCheck: lockedSwitch.checked
+    property alias gridCheck: gridSwitch.checked
 
     //parent: none.none
 
@@ -265,6 +266,12 @@ Item {
                     id: lockedSwitch
                     text: qsTr("Locked")
                     checked: mySettingsModel.Locked
+                }
+
+                Switch {
+                    id: gridSwitch
+                    text: qsTr("Show grid")
+                    checked: mySettingsModel.ShowGrid
                 }
             }
         }
