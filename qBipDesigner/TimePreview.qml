@@ -22,20 +22,32 @@ Item {
                                                jsonParser_lcl,
                                                basePath).ImageIndex + Number(
                                                modelData.charAt(idx)) + '.png')
+            Rectangle {
+                id: borderBox
+                anchors.fill: parent
+                border.color: "white"
+                border.width: 2
+                color: "transparent"
+                visible: false
+            }
 
             //            onSourceChanged: {
             //                console.log("Eval3:" + Utils.getNestedValue(jsonParser_lcl,
             //                                                            basePath))
             //            }
         }
+
+        //        ColorOverlay {
+        //            anchors.fill: timeImage
+        //            source: timeImage
+        //            color: "#FF00FF"
+        //        }
         MouseArea {
-            anchors.fill: parent
+            anchors.fill: timeImage
             onClicked: //container.clicked(container.cellColor)
             {
-                console.log("Eval2:" + fileHelper.getFilename(
-                                Utils.getNestedValue(
-                                    jsonParser_lcl,
-                                    basePath).ImageIndex + modelData + '.png'))
+                console.log("Clicked on" + timeImage)
+                borderBox.visible = !borderBox.visible
             }
         }
     }
