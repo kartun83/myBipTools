@@ -109,6 +109,11 @@ Item {
         modelData: mySettingsModel.Steps
     }
     ActivityPreview {
+        id: stepsGoal
+        basePath: "Activity.StepsGoal"
+        modelData: mySettingsModel.StepsGoal
+    }
+    ActivityPreview {
         id: calories
         basePath: "Activity.Calories"
         modelData: mySettingsModel.Calories
