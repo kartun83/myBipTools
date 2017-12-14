@@ -8,6 +8,7 @@ Item {
     property var jsonParser_lcl: jsonParser
     // Here we expect time in format HH:MM:SS
     property string modelData
+    property string elementDesc
     property int idx
 
     Rectangle {
@@ -29,6 +30,7 @@ Item {
                 border.width: 2
                 color: "transparent"
                 visible: false
+                property var boxOverlay: myOverlay
             }
 
             //            onSourceChanged: {
@@ -37,16 +39,24 @@ Item {
             //            }
         }
 
-        //        ColorOverlay {
-        //            anchors.fill: timeImage
-        //            source: timeImage
-        //            color: "#FF00FF"
-        //        }
+        ColorOverlay {
+            id: myOverlay
+            anchors.fill: timeImage
+            source: timeImage
+            color: "#FF00FF"
+            visible: false
+        }
         MouseArea {
             anchors.fill: timeImage
             onClicked: //container.clicked(container.cellColor)
             {
-                console.log("Clicked on" + timeImage)
+                console.log("Clicked on:" + baseImg.elementDesc)
+                if (selectedElement) {
+                    if (selectedElement.visible == true) {
+                        selectedElement.visible = false
+                    }
+                }
+
                 borderBox.visible = !borderBox.visible
                 selectedElement = borderBox
             }

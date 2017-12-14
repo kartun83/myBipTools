@@ -40,6 +40,7 @@ Item {
         basePath: 'Time.Hours.Tens'
         id: hoursTens
         modelData: mySettingsModel.Time
+        elementDesc: qsTr("Time.Hours.Tens")
         idx: 0
     }
 
@@ -47,18 +48,21 @@ Item {
         basePath: 'Time.Hours.Ones'
         id: hoursOnes
         modelData: mySettingsModel.Time
+        elementDesc: qsTr("Time.Hours.Ones")
         idx: 1
     }
     TimePreview {
         basePath: 'Time.Minutes.Tens'
         id: minutesTens
         modelData: mySettingsModel.Time
+        elementDesc: qsTr("Time.Minutes.Tens")
         idx: 3
     }
     TimePreview {
         basePath: 'Time.Minutes.Ones'
         id: minutesOnes
         modelData: mySettingsModel.Time
+        elementDesc: qsTr("Time.Minutes.Ones")
         idx: 4
     }
 
@@ -66,12 +70,14 @@ Item {
         basePath: 'Time.Seconds.Tens'
         id: secondsTens
         modelData: mySettingsModel.Time
+        elementDesc: qsTr("Time.Seconds.Tens")
         idx: 6
     }
     TimePreview {
         basePath: 'Time.Seconds.Ones'
         id: secondsOnes
         modelData: mySettingsModel.Time
+        elementDesc: qsTr("Time.Seconds.Ones")
         idx: 7
     }
     // Date

@@ -22,6 +22,25 @@ Item {
                         height: 50
                         border.color: "grey"
                         border.width: 2
+                        MouseArea {
+                            anchors.fill: coloredBox
+                            onClicked: //container.clicked(container.cellColor)
+                            {
+                                console.log("Clicked on:" + coloredBox.color)
+                                if (selectedElement) {
+                                    selectedElement.boxOverlay.visible = true
+                                    selectedElement.boxOverlay.color = coloredBox.color
+
+                                    //                                    if (selectedElement.visible == true) {
+                                    //                                        selectedElement.visible = false
+                                    //                                    }
+                                }
+
+                                //                                borderBox.visible = !borderBox.visible
+                                //                                borderBox.overlay = myOverlay
+                                //                                selectedElement = borderBox
+                            }
+                        }
                     }
                 }
             }
