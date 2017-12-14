@@ -1,6 +1,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import MyBipTools 1.0
 
 Item {
     anchors.fill: parent
@@ -50,17 +51,28 @@ Item {
                     anchors.fill: parent
                     wrapMode: Text.WordWrap
                     selectByMouse: true
-                    text: app.jsonData
+                    //textFormat: Text.PlainText
                     persistentSelection: true
 
                     //anchors.fill: parent
                     //                width: parent.width
                     //                height: parent.height
                     color: "#000eff"
+                    text: app.jsonData
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                     onCursorRectangleChanged: flick.ensureVisible(
                                                   cursorRectangle)
+                    //                    onTextChanged: {
+                    //                        testTextArea.text = text
+                    //                    }
+
+                    //                    text: testTextArea.text
+
+                    //                    JSONHighlighterComponent {
+                    //                        id: testTextArea
+                    //                        Component.onCompleted: onCompleted()
+                    //                    }
                 }
             }
         }
@@ -86,6 +98,7 @@ Item {
                     fileHelper.fileContent = jsonDataEdit.text
                     app.validateJson(fileHelper.fileContent)
                     jsonParser = JSON.parse(jsonDataEdit.text)
+                    myHighlighter.myRehighlight()
                 }
             }
         }

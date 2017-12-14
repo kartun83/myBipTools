@@ -75,7 +75,6 @@ Item {
                 anchors.fill: parent
                 ColumnLayout {
                     anchors.fill: parent
-                    //                Row {
                     Rectangle {
                         Layout.fillHeight: true
                         Layout.fillWidth: true

@@ -4,6 +4,8 @@
 #include "filehelper.h"
 #include "settingsdatamodel.h"
 #include "alignment.h"
+#include "jsonhighlighter.h"
+#include "highlightcomponent.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,14 +28,18 @@ int main(int argc, char *argv[])
     FileHelper::declareQML();
     SettingsDataModel::declareQML();
     Alignment::declareQML();
+    JSONHighlighter::declareQML();
+    HighlightComponent::registerQmlType();
 
     QQmlApplicationEngine engine;
 
     SettingsDataModel* m_model = new SettingsDataModel();
     Alignment* m_alignment = new Alignment();
+    JSONHighlighter* m_highlighter = new JSONHighlighter();
     QQmlContext *ctxt = engine.rootContext();
         ctxt->setContextProperty("mySettingsModel", m_model);
         ctxt->setContextProperty("myAlignment", m_alignment);
+        ctxt->setContextProperty("myHighlighter", m_highlighter);
 
 
 

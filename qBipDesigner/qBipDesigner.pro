@@ -15,7 +15,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp \
     filehelper.cpp \
     settingsdatamodel.cpp \
-    alignment.cpp
+    alignment.cpp \
+    jsonhighlighter.cpp \
+    highlightcomponent.cpp
 
 RESOURCES += qml.qrc
 
@@ -35,4 +37,6 @@ DISTFILES +=
 HEADERS += \
     filehelper.h \
     settingsdatamodel.h \
-    alignment.h
+    alignment.h \
+    jsonhighlighter.h \
+    highlightcomponent.h
