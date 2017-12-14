@@ -88,6 +88,8 @@ Item {
                             Layout.leftMargin: 10
                             contolHeight: parent.height
                             controlWidth: parent.width
+                            MovingShortCut {
+                            }
                         }
                         Canvas {
                             id: myCanvas

@@ -271,9 +271,47 @@ Item {
                 Switch {
                     id: gridSwitch
                     text: qsTr("Show grid")
-                    checked: mySettingsModel.ShowGrid
+                    //checked: mySettingsModel.ShowGrid
+                    checked: app.gridEnabled
+                }
+
+                Rectangle {
+                    id: gridColor
+                    height: gridSwitch.height
+                    width: height
+                    border.width: 1
+                    border.color: "grey"
+                    //color: "white"
+                    color: app.gridColor
+                    Layout.alignment: verticalCenter
+                    anchors.margins: 5
+                    MouseArea {
+                        anchors.fill: parent
+                        id: gridColorClicker
+                    }
                 }
             }
+        }
+    }
+    Connections {
+        target: gridSwitch
+        onCheckedChanged: {
+            app.gridEnabled = gridSwitch.checked
+            console.log("Grid enabled:", gridSwitch.checked, app.gridEnabled)
+            mainPage.drawGrid()
+        }
+    }
+
+    Connections {
+        target: gridColorClicker
+        onClicked: {
+            console.log("Color:", this.target.parent.color, gridColor.color)
+            if (Qt.colorEqual(gridColor.color, "white")) {
+                gridColor.color = app.gridColor = "black"
+            } else {
+                gridColor.color = app.gridColor = "white"
+            }
+            mainPage.drawGrid()
         }
     }
 }

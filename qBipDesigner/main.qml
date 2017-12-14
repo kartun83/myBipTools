@@ -16,6 +16,12 @@ ApplicationWindow {
     property var jsonParser
     property var jsonData
     property var arr: myAlignment.AlignmentMap
+
+    // Application behaivor params
+    property bool gridEnabled
+    property string gridColor: "white"
+
+    // Global params
     property var selectedElement
 
     //property var globalSettings: Settings

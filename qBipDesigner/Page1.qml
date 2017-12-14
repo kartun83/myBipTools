@@ -3,7 +3,7 @@ import QtQuick.Dialogs 1.2
 import MyBipTools 1.0
 
 Page1Form {
-
+    id: mainPage
     FileDialog {
         id: fileDialog
         title: "Please choose a file"
@@ -58,22 +58,30 @@ Page1Form {
     }
 
     function drawGrid() {
-        if (mySettingsModel.ShowGrid == true) {
+        //if (mySettingsModel.ShowGrid == true) {
+        if (app.gridEnabled == true) {
+            console.log("Enable grid")
             myCanvas.visible = true
             var ctx = myCanvas.getContext("2d")
             ctx.lineWidth = 2
 
             //ctx.strokeStyle = ctx.createPattern(
             //            "white", Qt.CrossPattern)//Qt.Dense7Pattern)
-            ctx.fillStyle = ctx.createPattern("white", Qt.CrossPattern)
+            console.log("Drawing grid with:", app.gridColor)
+            ctx.fillStyle = ctx.createPattern(app.gridColor, Qt.CrossPattern)
             ctx.beginPath()
             //ctx.moveTo(10, 10)
             //ctx.lineTo(30, 30)
-            ctx.fillRect(0, 0, designPreviewScaled.width,
-                         designPreviewScaled.height)
+            //dpScaledPreview , dpScaledRect
+            //ctx.fillRect(0, 0, dpScaledRect.width, dpScaledRect.height)
+            ctx.fillRect(0, 0,
+                         dpScaledPreview.bgImage.width * dpScaledPreview.scale,
+                         dpScaledPreview.bgImage.height * dpScaledPreview.scale)
 
             ctx.stroke()
+            myCanvas.requestPaint()
         } else {
+            console.log("Disabling grid")
             myCanvas.visible = false
         }
     }

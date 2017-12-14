@@ -16,6 +16,7 @@ Item {
         y: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).Y
         border.color: "white"
         border.width: 2
+        id: topRect
 
         Image {
             id: timeImage
@@ -31,6 +32,7 @@ Item {
                 color: "transparent"
                 visible: false
                 property var boxOverlay: myOverlay
+                property var topRect: topRect
             }
 
             //            onSourceChanged: {

@@ -111,11 +111,13 @@ PreviewParametersForm {
         value: lockedCheck
     }
 
-    Binding {
-        target: mySettingsModel
-        property: "ShowGrid"
-        value: gridCheck
-    }
+    //    Binding {
+    //        //target: mySettingsModel
+    //        //property: "ShowGrid"
+    //        target: appWindow
+    //        property: enableGrid
+    //        value: gridCheck
+    //    }
 
     //    Component.onCompleted: {
     //        // Perform binding with app.globalSettings

@@ -8,6 +8,7 @@ Item {
     id: designPreviewTopBox
     property alias controlWidth: designPreviewTopBox.width
     property alias contolHeight: designPreviewTopBox.height
+    property alias bgImage: background
     //    property alias scale: designPreview.scale
     transformOrigin: Item.TopLeft
 
