@@ -33,6 +33,7 @@ Item {
                 visible: false
                 property var boxOverlay: myOverlay
                 property var topRect: topRect
+                property string elementDesc: baseImg.elementDesc
             }
 
             //            onSourceChanged: {
@@ -60,7 +61,11 @@ Item {
                 }
 
                 borderBox.visible = !borderBox.visible
-                selectedElement = borderBox
+                if (selectedElement != borderBox) {
+                    selectedElement = borderBox
+                } else {
+                    selectedElement = null
+                }
             }
         }
     }

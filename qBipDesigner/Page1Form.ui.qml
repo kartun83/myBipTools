@@ -97,22 +97,13 @@ Item {
                             height: dpScaledRect.height
                             Layout.fillHeight: true
                             Layout.fillWidth: true
-                            //                            onPaint: {
-                            //                                //if (mySettingsModel.ShowGrid == true) {
-                            //                                var ctx = getContext("2d")
-                            //                                ctx.lineWidth = 2
-                            //                                //ctx.strokeStyle = ctx.createPattern(
-                            //                                //            "white", Qt.CrossPattern)//Qt.Dense7Pattern)
-                            //                                ctx.fillStyle = ctx.createPattern(
-                            //                                            "white", Qt.CrossPattern)
-                            //                                ctx.beginPath()
-                            //                                //ctx.moveTo(10, 10)
-                            //                                //ctx.lineTo(30, 30)
-                            //                                ctx.fillRect(0, 0, designPreviewScaled,
-                            //                                             designPreviewScaled)
-                            //                                ctx.stroke()
-                            //                                //}
-                            //                            }
+                        }
+                    }
+                    Rectangle {
+                        Layout.preferredHeight: 30
+                        Layout.fillWidth: true
+                        Text {
+                            id: selectedElementText
                         }
                     }
                 }
@@ -161,5 +152,14 @@ Item {
     Connections {
         target: myCanvas
         onPaint: drawGrid()
+    }
+
+    Connections {
+        target: app
+        onSelectedElementChanged: {
+            selectedElementText.text = qsTr("Selected element: %1").arg(
+                        (selectedElement) ? selectedElement.elementDesc : qsTr(
+                                                "none"))
+        }
     }
 }
