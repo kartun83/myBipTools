@@ -157,8 +157,12 @@ Item {
         target: app
         onSelectedElementChanged: {
             selectedElementText.text = qsTr("Selected element: %1").arg(
-                        (selectedElement) ? selectedElement.elementDesc : qsTr(
-                                                "none"))
+                        (selectedElement) ? selectedElement.elementDesc + qsTr(
+                                                ". X:%1, Y:%2").arg(
+                                                selectedElement.topRect.x.toString(
+                                                    )).arg(
+                                                selectedElement.topRect.y.toString(
+                                                    )) : qsTr("none"))
         }
     }
 }

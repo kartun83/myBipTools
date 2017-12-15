@@ -21,5 +21,6 @@
         <file>WeatherPreview.qml</file>
         <file>ColorPanel.qml</file>
         <file>MovingShortCut.qml</file>
+        <file>DatePreviewOneLine.qml</file>
     </qresource>
 </RCC>

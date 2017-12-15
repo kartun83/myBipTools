@@ -97,12 +97,16 @@ Item {
         checkAttr: 'TwoDigitsDay'
     }
 
-    //    DatePreview {
-    //        id: dateTextPreview2
-    //        basePath: 'Date.MonthAndDay.OneLine'
-    //        //basePath: 'MonthAndDay.Separate'
-    //        modelData: mySettingsModel.Date
-    //    }
+    DatePreviewOneLine {
+        id: dateTextPreview2
+        basePath: 'Date.MonthAndDay'
+        modelData: mySettingsModel.Date
+        suffix: 'OneLine'
+        suffix2: 'Number'
+        checkAttr1: 'TwoDigitsMonth'
+        checkAttr2: 'TwoDigitsDay'
+    }
+
     BaseXYPreview {
         basePath: 'Date.WeekDay'
         id: dateWeekdayPreview

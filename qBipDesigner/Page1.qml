@@ -63,23 +63,25 @@ Page1Form {
             console.log("Enable grid")
             myCanvas.visible = true
             var ctx = myCanvas.getContext("2d")
-            ctx.lineWidth = 2
+            if (ctx) {
 
-            //ctx.strokeStyle = ctx.createPattern(
-            //            "white", Qt.CrossPattern)//Qt.Dense7Pattern)
-            console.log("Drawing grid with:", app.gridColor)
-            ctx.fillStyle = ctx.createPattern(app.gridColor, Qt.CrossPattern)
-            ctx.beginPath()
-            //ctx.moveTo(10, 10)
-            //ctx.lineTo(30, 30)
-            //dpScaledPreview , dpScaledRect
-            //ctx.fillRect(0, 0, dpScaledRect.width, dpScaledRect.height)
-            ctx.fillRect(0, 0,
-                         dpScaledPreview.bgImage.width * dpScaledPreview.scale,
-                         dpScaledPreview.bgImage.height * dpScaledPreview.scale)
+                ctx.lineWidth = 50
 
-            ctx.stroke()
-            myCanvas.requestPaint()
+                //ctx.strokeStyle = ctx.createPattern(
+                //            "white", Qt.CrossPattern)//Qt.Dense7Pattern)
+                console.log("Drawing grid with:", app.gridColor)
+                ctx.fillStyle = ctx.createPattern(app.gridColor,
+                                                  Qt.CrossPattern)
+                ctx.beginPath()
+
+                ctx.fillRect(
+                            0, 0,
+                            dpScaledPreview.bgImage.width * dpScaledPreview.scale,
+                            dpScaledPreview.bgImage.height * dpScaledPreview.scale)
+
+                ctx.stroke()
+                myCanvas.requestPaint()
+            }
         } else {
             console.log("Disabling grid")
             myCanvas.visible = false

@@ -35,11 +35,6 @@ Item {
                 property var topRect: topRect
                 property string elementDesc: baseImg.elementDesc
             }
-
-            //            onSourceChanged: {
-            //                console.log("Eval3:" + Utils.getNestedValue(jsonParser_lcl,
-            //                                                            basePath))
-            //            }
         }
 
         ColorOverlay {
@@ -51,8 +46,7 @@ Item {
         }
         MouseArea {
             anchors.fill: timeImage
-            onClicked: //container.clicked(container.cellColor)
-            {
+            onClicked: {
                 console.log("Clicked on:" + baseImg.elementDesc)
                 if (selectedElement) {
                     if (selectedElement.visible == true) {
