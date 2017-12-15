@@ -13,24 +13,32 @@ Item {
 
     ColumnLayout {
         anchors.fill: parent
+        anchors.margins: 5
 
         spacing: 2
+        clip: true
 
         Rectangle {
             id: rectangle
-            width: 200
-            height: 200
-            color: "#ffffff"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            anchors.bottomMargin: rectangle1.height + 5
+            //            width: 200
+            //            height: 200
+            //            color: "#505050"
+            //            Layout.preferredHeight: 300
             anchors.fill: parent
+            clip: true
+            //            anchors.left: parent.left
+            //            anchors.right: parent.right
 
+            //            Layout.fillHeight: true
+            //            Layout.fillWidth: true
             Flickable {
                 id: flick
+                contentWidth: 610
 
                 anchors.fill: parent
-
-                contentWidth: parent.width
                 contentHeight: jsonDataEdit.paintedHeight
                 clip: true
 
@@ -47,6 +55,7 @@ Item {
 
                 TextEdit {
                     id: jsonDataEdit
+                    clip: true
                     //                text: "test"
                     anchors.fill: parent
                     wrapMode: Text.WordWrap
@@ -55,12 +64,13 @@ Item {
                     persistentSelection: true
 
                     //anchors.fill: parent
-                    //                width: parent.width
-                    //                height: parent.height
+                    //                    width: parent.width
+                    //                    height: parent.height
                     color: "#000eff"
                     text: app.jsonData
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
+
+                    //                    Layout.fillHeight: true
+                    //                    Layout.fillWidth: true
                     onCursorRectangleChanged: flick.ensureVisible(
                                                   cursorRectangle)
                     //                    onTextChanged: {
@@ -84,14 +94,19 @@ Item {
             Layout.fillWidth: true
             Layout.preferredHeight: 50
             Layout.maximumHeight: 50
+            anchors.bottom: parent.bottom
 
+            //            anchors.fill: parent
             Button {
                 id: refreshButton
 
                 text: qsTr("Refresh (" + refreshShortcut.sequence + ")")
 
                 anchors.fill: parent
+                //                Layout.fillHeight: true
+                //                Layout.fillWidth: true
                 Layout.alignment: Qt.AlignLeft | Qt.AlignBottom
+                Layout.preferredHeight: 30
 
                 onClicked: {
                     console.log("Refreshing JSON from editor")

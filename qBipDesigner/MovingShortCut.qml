@@ -1,8 +1,9 @@
 import QtQuick 2.9
+import QtQml 2.2
 
 Item {
     id: movingShortcuts
-    signal keyboardMovement
+    signal keyboardMovement(int direction)
 
     Shortcut {
         id: moveLeftShortcut
@@ -10,15 +11,7 @@ Item {
         sequence: StandardKey.MoveToPreviousChar
         onActivated: {
             console.log("left")
-            if (app.selectedElement) {
-                if (app.selectedElement.topRect.x > 0) {
-                    app.selectedElement.topRect.x = app.selectedElement.topRect.x - 1
-                }
-            }
-        }
-        Component.onCompleted: {
-            moveLeftShortcut.activated.connect(
-                        movingShortcuts.keyboardMovement())
+            movingShortcuts.keyboardMovement(1)
         }
     }
     Shortcut {
@@ -27,15 +20,7 @@ Item {
         sequence: StandardKey.MoveToNextChar
         onActivated: {
             console.log("right")
-            if (app.selectedElement) {
-                if (app.selectedElement.topRect.x < mainUI.dpReqWidth) {
-                    app.selectedElement.topRect.x = app.selectedElement.topRect.x + 1
-                }
-            }
-        }
-        Component.onCompleted: {
-            moveRightShortcut.activated.connect(
-                        movingShortcuts.keyboardMovement())
+            movingShortcuts.keyboardMovement(2)
         }
     }
     Shortcut {
@@ -44,14 +29,7 @@ Item {
         sequence: StandardKey.MoveToPreviousLine
         onActivated: {
             console.log("up")
-            if (app.selectedElement) {
-                if (app.selectedElement.topRect.y > 0) {
-                    app.selectedElement.topRect.y = app.selectedElement.topRect.y - 1
-                }
-            }
-        }
-        Component.onCompleted: {
-            moveUpShortcut.activated.connect(movingShortcuts.keyboardMovement())
+            movingShortcuts.keyboardMovement(3)
         }
     }
     Shortcut {
@@ -60,24 +38,36 @@ Item {
         sequence: StandardKey.MoveToNextLine
         onActivated: {
             console.log("down")
-            if (app.selectedElement) {
-                if (app.selectedElement.topRect.y < mainUI.dpReqHeight) {
-                    app.selectedElement.topRect.y = app.selectedElement.topRect.y + 1
-                }
-            }
+            movingShortcuts.keyboardMovement(4)
         }
-        Component.onCompleted: {
-            moveDownShortcut.activated.connect(
-                        movingShortcuts.keyboardMovement())
-        }
-    }
-
-    Component.onCompleted: {
-        // Forward signal to application
-        movingShortcuts.keybordMovement.connect(app.keybordMovement())
     }
 
     onKeyboardMovement: {
         console.log("Keyboard movement detected in Moving shortcut")
+        if (app.selectedElement) {
+            switch (direction) {
+            case 1:
+                if (app.selectedElement.topRect.x > 0) {
+                    app.selectedElement.topRect.x = app.selectedElement.topRect.x - 1
+                }
+                break
+            case 2:
+                if (app.selectedElement.topRect.x < mainUI.dpReqWidth) {
+                    app.selectedElement.topRect.x = app.selectedElement.topRect.x + 1
+                }
+                break
+            case 3:
+                if (app.selectedElement.topRect.y > 0) {
+                    app.selectedElement.topRect.y = app.selectedElement.topRect.y - 1
+                }
+                break
+            case 4:
+                if (app.selectedElement.topRect.y < mainUI.dpReqHeight) {
+                    app.selectedElement.topRect.y = app.selectedElement.topRect.y + 1
+                }
+                break
+            }
+            app.keyboardMovement(direction)
+        }
     }
 }
