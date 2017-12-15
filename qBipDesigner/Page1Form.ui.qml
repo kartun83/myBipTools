@@ -101,6 +101,7 @@ Item {
                     Rectangle {
                         Layout.preferredHeight: 30
                         Layout.fillWidth: true
+                        id: selectedElementRect
                         Text {
                             id: selectedElementText
                         }

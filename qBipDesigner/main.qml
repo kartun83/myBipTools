@@ -24,6 +24,9 @@ ApplicationWindow {
     // Global params
     property var selectedElement
 
+    // Global signals
+    signal keybordMovement(string dummy)
+
     //property var globalSettings: Settings
     FileHelper {
         id: fileHelper
@@ -75,6 +78,10 @@ ApplicationWindow {
     //    }
     onWindowStateChanged: {
         console.log("Window state changed")
+    }
+
+    onKeybordMovement: {
+        console.log("Keyboard movement detected in APP")
     }
 
     function validateJson(json) {

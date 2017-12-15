@@ -2,6 +2,8 @@ import QtQuick 2.9
 
 Item {
     id: movingShortcuts
+    signal keyboardMovement
+
     Shortcut {
         id: moveLeftShortcut
         autoRepeat: false
@@ -13,6 +15,10 @@ Item {
                     app.selectedElement.topRect.x = app.selectedElement.topRect.x - 1
                 }
             }
+        }
+        Component.onCompleted: {
+            moveLeftShortcut.activated.connect(
+                        movingShortcuts.keyboardMovement())
         }
     }
     Shortcut {
@@ -27,6 +33,10 @@ Item {
                 }
             }
         }
+        Component.onCompleted: {
+            moveRightShortcut.activated.connect(
+                        movingShortcuts.keyboardMovement())
+        }
     }
     Shortcut {
         id: moveUpShortcut
@@ -39,6 +49,9 @@ Item {
                     app.selectedElement.topRect.y = app.selectedElement.topRect.y - 1
                 }
             }
+        }
+        Component.onCompleted: {
+            moveUpShortcut.activated.connect(movingShortcuts.keyboardMovement())
         }
     }
     Shortcut {
@@ -53,5 +66,18 @@ Item {
                 }
             }
         }
+        Component.onCompleted: {
+            moveDownShortcut.activated.connect(
+                        movingShortcuts.keyboardMovement())
+        }
+    }
+
+    Component.onCompleted: {
+        // Forward signal to application
+        movingShortcuts.keybordMovement.connect(app.keybordMovement())
+    }
+
+    onKeyboardMovement: {
+        console.log("Keyboard movement detected in Moving shortcut")
     }
 }

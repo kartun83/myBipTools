@@ -27,7 +27,7 @@ Item {
             Rectangle {
                 id: borderBox
                 anchors.fill: parent
-                border.color: "white"
+                border.color: app.gridColor
                 border.width: 2
                 color: "transparent"
                 visible: false
@@ -41,7 +41,7 @@ Item {
             id: myOverlay
             anchors.fill: timeImage
             source: timeImage
-            color: "#FF00FF"
+            color: app.gridColor
             visible: false
         }
         MouseArea {
@@ -49,7 +49,7 @@ Item {
             onClicked: {
                 console.log("Clicked on:" + baseImg.elementDesc)
                 if (selectedElement) {
-                    if (selectedElement.visible == true) {
+                    if (selectedElement.visible === true) {
                         selectedElement.visible = false
                     }
                 }
