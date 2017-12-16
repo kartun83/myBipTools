@@ -15,11 +15,14 @@ Item {
         border.width: 2
 
         Image {
-            id: timeImage
+            id: baseXYImage
             source: fileHelper.getFilename(
                         Utils.getNestedValue(
                             jsonParser_lcl,
                             basePath).ImageIndex + modelData + '.png')
+            onSourceChanged: {
+                console.log("BaseXY source changed to:" + this.source)
+            }
         }
         MouseArea {
             anchors.fill: parent
@@ -36,7 +39,7 @@ Item {
         target: app
         onJsonParserChanged: {
             console.log("detected json data change in basicXY preview")
-            timeImage.sourceChanged("dummy")
+            baseXYImage.sourceChanged("dummy")
         }
     }
 }

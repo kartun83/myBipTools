@@ -14,11 +14,11 @@ Item {
     Rectangle {
         x: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).X
         y: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).Y
-        width: Utils.getNestedValue(parent.jsonParser_lcl,
-                                    parent.basePath).BottomRightX - x
-        height: Utils.getNestedValue(parent.jsonParser_lcl,
-                                     parent.basePath).BottomRightY - y
 
+        //        width: Utils.getNestedValue(parent.jsonParser_lcl,
+        //                                    parent.basePath).BottomRightX - x
+        //        height: Utils.getNestedValue(parent.jsonParser_lcl,
+        //                                     parent.basePath).BottomRightY - y
         clip: true
         color: 'transparent'
         id: topRect
@@ -29,6 +29,10 @@ Item {
                                                jsonParser_lcl,
                                                basePath).ImageIndex + Number(
                                                modelData.charAt(idx)) + '.png')
+            onSourceChanged: {
+                console.log("Time source updated to:" + this.source)
+            }
+
             Rectangle {
                 id: borderBox
                 anchors.fill: parent
@@ -69,12 +73,12 @@ Item {
         }
     }
 
-    //    Connections {
-    //        target: app
-    //        onJsonParserChanged: {
-    //            console.log("detected json data change in activity preview")
-    //            timeImage.sourceChanged("dummy")
-    //            //            itemModel.onMydataChanged
-    //        }
-    //    }
+    Connections {
+        target: app
+        onJsonParserChanged: {
+            console.log("detected json data change in activity preview")
+            timeImage.sourceChanged("dummy")
+            //            itemModel.onMydataChanged
+        }
+    }
 }

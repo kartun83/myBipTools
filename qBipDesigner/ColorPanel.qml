@@ -6,7 +6,7 @@ Item {
     property var colors: ['#000000', '#0000FF', '#00FF00', '#FF0000', '#00FFFF', '#FF00FF', '#FFFF00', '#FFFFFF'] //, '#FEFE00']
 
     Row {
-        anchors.fill: parent
+        //anchors.fill: parent
         Rectangle {
             color: "green"
             anchors.fill: parent

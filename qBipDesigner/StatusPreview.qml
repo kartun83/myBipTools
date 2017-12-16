@@ -34,6 +34,12 @@ Item {
                 console.log("Eval status preview:" + Utils.getNestedValue(
                                 jsonParser_lcl, basePath).ImageIndexOn + '.png')
             }
+            //            onStatusChanged: {
+            //                if (image.status == Image.Error && )
+            //                {
+            //                         console.log('Image load error')
+            //                    }
+            //            }
         }
         MouseArea {
             anchors.fill: parent

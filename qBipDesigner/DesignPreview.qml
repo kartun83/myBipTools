@@ -140,17 +140,20 @@ Item {
         id: weatherCurrent
         basePath: "Weather.Temperature.Current"
         modelData: mySettingsModel.WeatherCurrent
+        suffix: 'Number'
     }
 
     WeatherPreview {
         id: weatherToday
         basePath: "Weather.Temperature.Today.Separate.Day"
         modelData: mySettingsModel.WeatherDay
+        suffix: 'Number'
     }
     WeatherPreview {
         id: weatherNight
         basePath: "Weather.Temperature.Today.Separate.Night"
         modelData: mySettingsModel.WeatherNight
+        suffix: 'Number'
     }
 
     //    WeatherPreview {

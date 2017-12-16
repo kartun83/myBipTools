@@ -9,6 +9,7 @@ Item {
     property string basePath
     property var jsonParser_lcl: jsonParser
     property alias modelData: itemModel.mydata
+    property string suffix
 
     ListModel {
         id: itemModel
@@ -27,20 +28,26 @@ Item {
 
     Rectangle {
         x: Utils.getNestedValue(parent.jsonParser_lcl,
-                                parent.basePath + '.Number').TopLeftX
+                                parent.basePath + '.' + suffix).TopLeftX
         y: Utils.getNestedValue(parent.jsonParser_lcl,
-                                parent.basePath + '.Number').TopLeftY
-        width: Utils.getNestedValue(parent.jsonParser_lcl,
-                                    parent.basePath).BottomRightX - x
-        height: Utils.getNestedValue(parent.jsonParser_lcl,
-                                     parent.basePath).BottomRightY - y
+                                parent.basePath + '.' + suffix).TopLeftY
+        width: Utils.getNestedValue(
+                   parent.jsonParser_lcl,
+                   parent.basePath + '.' + suffix).BottomRightX - x
+        height: Utils.getNestedValue(
+                    parent.jsonParser_lcl,
+                    parent.basePath + '.' + suffix).BottomRightY - y
 
         clip: true
         color: 'transparent'
 
+        onWidthChanged: {
+            console.log("Weather preview:" + x + y)
+        }
+
         Row {
             spacing: Utils.getNestedValue(jsonParser_lcl,
-                                          basePath + '.Number').Spacing
+                                          basePath + '.' + suffix).Spacing
             Repeater {
                 model: itemModel
                 Image {
@@ -54,10 +61,18 @@ Item {
                                 fileHelper.getFilename(
                                             Utils.getNestedValue(
                                                 jsonParser_lcl,
-                                                basePath + '.Number').ImageIndex + Number(
+                                                basePath + '.' + suffix).ImageIndex + Number(
                                                 modelData) + '.png')
                             }
                 }
+            }
+
+            Image {
+                id: degreesImage
+                source: fileHelper.getFilename(
+                            Utils.getNestedValue(
+                                jsonParser_lcl,
+                                basePath).DegreesImageIndex + '.png')
             }
         }
 

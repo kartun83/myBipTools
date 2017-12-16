@@ -50,9 +50,9 @@ Page1Form {
     //        ctx.stroke()
     //    }
     function resizePreview() {
-        console.log("Resizing:", dpScaledPreview.height / dpReqHeight,
-                    dpScaledPreview.width / dpReqWidth)
-        console.log("Scaled rect:" + dpScaledRect.width + ':' + dpScaledRect.height)
+        //        console.log("Resizing:", dpScaledPreview.height / dpReqHeight,
+        //                    dpScaledPreview.width / dpReqWidth)
+        //        console.log("Scaled rect:" + dpScaledRect.width + ':' + dpScaledRect.height)
         dpScaledPreview.scale = Math.min(dpScaledRect.height / dpReqHeight,
                                          dpScaledRect.width / dpReqWidth)
     }
