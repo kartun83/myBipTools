@@ -83,8 +83,8 @@ Item {
     }
 
     // Analog TimePreview
-    AnalogDial {
-    }
+    //    AnalogDial {
+    //    }
 
     // Date
     DatePreviewSeparate {
