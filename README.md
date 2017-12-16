@@ -46,4 +46,11 @@ Currently it's proof of concept that this could be done mostly with pure QML\Jav
 - Respond to changes in JSON data in embedded editor
 *bad info* : currently it supports only background manipulation. It ignors all other properties.
 
-**Requires** : QT5, build with QT 5.9
+**Requires** : QT5, build with QT 5.10
+
+### Cross compiling for Windows
+* Clone mxe(https://github.com/mxe/mxe)
+* Check that qt compiles with current mxe(http://mxe.cc/build-matrix.html)
+* If so, build gcc with `make MXE_TARGETS='x86_64-w64-mingw32.shared' gcc -j4 JOBS=4`
+* Build required modules, or build all with `make MXE_TARGETS='x86_64-w64-mingw32.shared' qt5 -j4 JOBS=4`
+* Replace shared with static if you prefer static builds
