@@ -15,9 +15,11 @@ Item {
         x: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).X
         y: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).Y
 
-        clip: true
+        //clip: true
         color: 'transparent'
         id: topRect
+        width: timeImage.implicitWidth
+        height: timeImage.implicitHeight
 
         Image {
             id: timeImage
@@ -26,10 +28,21 @@ Item {
                                                jsonParser_lcl,
                                                basePath).ImageIndex + Number(
                                                modelData.charAt(idx)) + '.png')
-            onSourceChanged: {
-                console.log("Time source updated to:" + this.source)
-            }
 
+            //            onSourceChanged: {
+            //                console.log("Time source updated to:" + this.source)
+            //                // Update topRect with actual dimentions
+            //                //                timeImage.
+            //                //                topRect.width = timeImage.
+            //            }
+
+            //            onStatusChanged: {
+            //                if (timeImage.status == Image.Ready)
+            //                {
+            //                    console.log('Updating parent dimentions')
+            //                     implicitHeight
+            //                }
+            //            }
             Rectangle {
                 id: borderBox
                 anchors.fill: parent
