@@ -165,6 +165,7 @@ Item {
         id: distance
         basePath: "Activity.Distance"
         modelData: mySettingsModel.Distance
+        suffix: 'Number'
     }
 
     // Status Icons
