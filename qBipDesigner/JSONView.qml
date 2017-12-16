@@ -19,9 +19,54 @@ Item {
         clip: true
 
         Rectangle {
+            id: rectToolbar
+            Layout.preferredHeight: 50
+            Layout.fillWidth: true
+            color: "grey"
+            Rectangle {
+                anchors.fill: parent
+                anchors.margins: 5
+                color: 'transparent'
+
+                Row {
+                    spacing: 5
+
+                    Text {
+                        text: qsTr("Editor fontsize")
+                        anchors.verticalCenter: textSizeCombo.verticalCenter
+                    }
+
+                    ComboBox {
+                        id: textSizeCombo
+                        wheelEnabled: true
+                        font.pointSize: 10
+                        model: ListModel {
+                            id: textSizeModel
+                        }
+                        textRole: "num"
+                        Component.onCompleted: {
+                            textSizeModel.clear()
+                            for (var i = 8; i <= 24; i = i + 2) {
+                                textSizeModel.append({
+                                                         num: i
+                                                     })
+                            }
+                            textSizeCombo.currentIndex = 1
+                        }
+                    }
+
+                    JSONComposeMenu {
+                        id: jsonComposeMenu
+                    }
+                }
+            }
+        }
+
+        Rectangle {
             id: rectangle
             Layout.fillHeight: true
             Layout.fillWidth: true
+            anchors.topMargin: rectToolbar.height + 5
             anchors.bottomMargin: rectangle1.height + 5
             //            width: 200
             //            height: 200
@@ -68,7 +113,9 @@ Item {
                     //                    height: parent.height
                     color: "#000eff"
                     text: app.jsonData
-                    font.pointSize: 16
+                    font.pointSize: Number(textSizeCombo.currentText)
+                                    > 10 ? Number(
+                                               textSizeCombo.currentText) : 10 //16
 
                     //                    Layout.fillHeight: true
                     //                    Layout.fillWidth: true

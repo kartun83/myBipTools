@@ -23,5 +23,6 @@
         <file>MovingShortCut.qml</file>
         <file>DatePreviewOneLine.qml</file>
         <file>AnalogDial.qml</file>
+        <file>JSONComposeMenu.qml</file>
     </qresource>
 </RCC>
