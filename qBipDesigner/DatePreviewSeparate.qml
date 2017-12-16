@@ -40,10 +40,12 @@ Item {
                                 basePath + '.' + suffix).TopLeftX
         y: Utils.getNestedValue(parent.jsonParser_lcl,
                                 basePath + '.' + suffix).TopLeftY
-        width: Utils.getNestedValue(parent.jsonParser_lcl,
-                                    parent.basePath).BottomRightX - x
-        height: Utils.getNestedValue(parent.jsonParser_lcl,
-                                     parent.basePath).BottomRightY - y
+        width: Utils.getNestedValue(
+                   parent.jsonParser_lcl,
+                   parent.basePath + '.' + suffix).BottomRightX - x
+        height: Utils.getNestedValue(
+                    parent.jsonParser_lcl,
+                    parent.basePath + '.' + suffix).BottomRightY - y
 
         clip: true
         color: 'transparent'

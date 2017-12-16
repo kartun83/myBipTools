@@ -15,16 +15,13 @@ Item {
         x: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).X
         y: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).Y
 
-        //        width: Utils.getNestedValue(parent.jsonParser_lcl,
-        //                                    parent.basePath).BottomRightX - x
-        //        height: Utils.getNestedValue(parent.jsonParser_lcl,
-        //                                     parent.basePath).BottomRightY - y
         clip: true
         color: 'transparent'
         id: topRect
 
         Image {
             id: timeImage
+            anchors.fill: parent
             source: fileHelper.getFilename(Utils.getNestedValue(
                                                jsonParser_lcl,
                                                basePath).ImageIndex + Number(
@@ -77,7 +74,8 @@ Item {
         target: app
         onJsonParserChanged: {
             console.log("detected json data change in activity preview")
-            timeImage.sourceChanged("dummy")
+            //timeImage.sourceChanged("dummy")
+            timeImage.update()
             //            itemModel.onMydataChanged
         }
     }
