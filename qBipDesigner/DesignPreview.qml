@@ -81,6 +81,11 @@ Item {
         elementDesc: qsTr("Time.Seconds.Ones")
         idx: 7
     }
+
+    // Analog TimePreview
+    AnalogDial {
+    }
+
     // Date
     DatePreviewSeparate {
         id: dateTextPreviewSeparate1

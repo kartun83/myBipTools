@@ -22,5 +22,6 @@
         <file>ColorPanel.qml</file>
         <file>MovingShortCut.qml</file>
         <file>DatePreviewOneLine.qml</file>
+        <file>AnalogDial.qml</file>
     </qresource>
 </RCC>
