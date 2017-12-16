@@ -1,6 +1,7 @@
 import QtQuick 2.9
 import QtGraphicalEffects 1.0
 import QtQml.Models 2.1
+import QtQml 2.2
 
 import "Utitilies.js" as Utils
 
@@ -15,6 +16,7 @@ Item {
         property int mydata
 
         onMydataChanged: {
+            console.log("Rebuilding activity")
             itemModel.clear()
             var string = mydata.toString()
             for (var i = 0; i < string.length; i++) {
@@ -28,8 +30,13 @@ Item {
     Rectangle {
         x: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftX
         y: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftY
-        border.color: "white"
-        border.width: 2
+        width: Utils.getNestedValue(parent.jsonParser_lcl,
+                                    parent.basePath).BottomRightX - x
+        height: Utils.getNestedValue(parent.jsonParser_lcl,
+                                     parent.basePath).BottomRightY - y
+
+        clip: true
+        color: 'transparent'
 
         Row {
             spacing: Utils.getNestedValue(jsonParser_lcl, basePath).Spacing
@@ -54,6 +61,15 @@ Item {
                                     jsonParser_lcl,
                                     basePath).ImageIndex + '.png'))
             }
+        }
+    }
+    Connections {
+        target: app
+        onJsonParserChanged: {
+            console.log("detected json data change in activity preview")
+            itemModel.modelReset()
+            itemModel.mydataChanged()
+            //            itemModel.onMydataChanged
         }
     }
 }

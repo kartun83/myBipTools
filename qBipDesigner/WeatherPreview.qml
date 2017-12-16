@@ -30,8 +30,13 @@ Item {
                                 parent.basePath + '.Number').TopLeftX
         y: Utils.getNestedValue(parent.jsonParser_lcl,
                                 parent.basePath + '.Number').TopLeftY
-        border.color: "white"
-        border.width: 2
+        width: Utils.getNestedValue(parent.jsonParser_lcl,
+                                    parent.basePath).BottomRightX - x
+        height: Utils.getNestedValue(parent.jsonParser_lcl,
+                                     parent.basePath).BottomRightY - y
+
+        clip: true
+        color: 'transparent'
 
         Row {
             spacing: Utils.getNestedValue(jsonParser_lcl,
@@ -65,6 +70,16 @@ Item {
                                     jsonParser_lcl,
                                     basePath).ImageIndex + '.png'))
             }
+        }
+    }
+
+    Connections {
+        target: app
+        onJsonParserChanged: {
+            console.log("detected json data change in weather preview")
+            itemModel.modelReset()
+            itemModel.mydataChanged()
+            //            itemModel.onMydataChanged
         }
     }
 }

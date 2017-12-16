@@ -46,4 +46,15 @@ Item {
             }
         }
     }
+
+    Connections {
+        target: app
+        onJsonParserChanged: {
+            console.log("detected json data change in activity preview")
+            // There is no true binging, so it's safe to use this trick.
+            // I've not found in docs how to force image reloading
+            timeImage.sourceChanged("dummy")
+            //            itemModel.onMydataChanged
+        }
+    }
 }

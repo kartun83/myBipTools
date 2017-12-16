@@ -86,6 +86,11 @@ ApplicationWindow {
         selectedElementChanged()
     }
 
+    onJsonParserChanged: {
+        // Notify that we changed working set
+        console.log("JSON parser data changed")
+    }
+
     function validateJson(json) {
         try {
             var error = fileHelper.validateJson(json)

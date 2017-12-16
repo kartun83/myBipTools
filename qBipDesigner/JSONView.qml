@@ -68,6 +68,7 @@ Item {
                     //                    height: parent.height
                     color: "#000eff"
                     text: app.jsonData
+                    font.pointSize: 16
 
                     //                    Layout.fillHeight: true
                     //                    Layout.fillWidth: true

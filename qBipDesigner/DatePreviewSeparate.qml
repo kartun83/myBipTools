@@ -40,8 +40,13 @@ Item {
                                 basePath + '.' + suffix).TopLeftX
         y: Utils.getNestedValue(parent.jsonParser_lcl,
                                 basePath + '.' + suffix).TopLeftY
-        border.color: "white"
-        border.width: 2
+        width: Utils.getNestedValue(parent.jsonParser_lcl,
+                                    parent.basePath).BottomRightX - x
+        height: Utils.getNestedValue(parent.jsonParser_lcl,
+                                     parent.basePath).BottomRightY - y
+
+        clip: true
+        color: 'transparent'
 
         Row {
             spacing: Utils.getNestedValue(jsonParser_lcl,
@@ -67,6 +72,16 @@ Item {
                                     jsonParser_lcl,
                                     basePath).ImageIndex + modelData - 1 + '.png'))
             }
+        }
+    }
+
+    Connections {
+        target: app
+        onJsonParserChanged: {
+            console.log("detected json data change in activity preview")
+            itemModel.modelReset()
+            itemModel.mydataChanged()
+            //            itemModel.onMydataChanged
         }
     }
 }

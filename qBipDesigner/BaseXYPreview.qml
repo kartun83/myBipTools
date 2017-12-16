@@ -20,11 +20,6 @@ Item {
                         Utils.getNestedValue(
                             jsonParser_lcl,
                             basePath).ImageIndex + modelData + '.png')
-
-            //            onSourceChanged: {
-            //                console.log("Eval3:" + Utils.getNestedValue(jsonParser_lcl,
-            //                                                            basePath))
-            //            }
         }
         MouseArea {
             anchors.fill: parent
@@ -35,6 +30,13 @@ Item {
                                     jsonParser_lcl,
                                     basePath).ImageIndex + modelData + '.png'))
             }
+        }
+    }
+    Connections {
+        target: app
+        onJsonParserChanged: {
+            console.log("detected json data change in basicXY preview")
+            timeImage.sourceChanged("dummy")
         }
     }
 }

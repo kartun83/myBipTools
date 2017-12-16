@@ -39,4 +39,13 @@ Item {
             }
         }
     }
+    Connections {
+        target: app
+        onJsonParserChanged: {
+            console.log("detected json data change in activity preview")
+            //itemModel.modelReset()
+            //itemModel.mydataChanged()
+            //            itemModel.onMydataChanged
+        }
+    }
 }
