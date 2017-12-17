@@ -52,5 +52,10 @@ Currently it's proof of concept that this could be done mostly with pure QML\Jav
 * Clone mxe(https://github.com/mxe/mxe)
 * Check that qt compiles with current mxe(http://mxe.cc/build-matrix.html)
 * If so, build gcc with `make MXE_TARGETS='x86_64-w64-mingw32.shared' gcc -j4 JOBS=4`
-* Build required modules, or build all with `make MXE_TARGETS='x86_64-w64-mingw32.shared' qt5 -j4 JOBS=4`
-* Replace shared with static if you prefer static builds
+* Build required modules `make MXE_TARGETS='x86_64-w64-mingw32.shared' qtbase qtdeclarative qtgraphicaleffects qtimageformats qtmultimedia qtquickcontrols qtquickcontrols2 qtsystems qttools qttranslations qtwinextras -j4 JOBS=4
+`, or build all with `make MXE_TARGETS='x86_64-w64-mingw32.shared' qt5 -j4 JOBS=4`
+** Replace shared with static if you prefer static builds
+** Adjust jobs count depending on your cpu
+* For shared builds to assemble runtime:
+** copydlldeps.sh
+** If deploying directly from qt add build step : --copy --infile '%{CurrentRun:Executable:FilePath}' --enforcedir '%{Qt:QT_INSTALL_PREFIX}/plugins/platforms'  --enforcedir '%{Qt:QT_INSTALL_PREFIX}/qml/QtQuick/Controls.2'  --destdir '%{CurrentRun:Executable:NativePath}/deploy' --srcdir '%{Qt:QT_INSTALL_PREFIX}' --recursivesrcdir
