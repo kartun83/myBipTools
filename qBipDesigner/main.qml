@@ -21,7 +21,7 @@ ApplicationWindow {
     // Application behaivor params
     property bool gridEnabled
     property string gridColor: "white"
-    property bool analogDialRotation: false
+    property bool analogDialRotation: false //true
 
     // Global params
     property var selectedElement
