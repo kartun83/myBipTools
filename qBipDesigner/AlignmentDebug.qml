@@ -21,6 +21,7 @@ Item {
         RowLayout {
             anchors.fill: parent
             Rectangle {
+                id: contentRect
                 color: 'transparent'
                 border.color: 'blue'
                 border.width: 2
@@ -28,6 +29,7 @@ Item {
                 height: 50
                 clip: true
                 Layout.alignment: Qt.AlignRight | Qt.AlignBottom
+
                 //anchors.fill: parent
                 RowLayout {
                     anchors.fill: parent

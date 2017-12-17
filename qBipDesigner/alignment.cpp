@@ -10,7 +10,7 @@ Alignment::Alignment(QObject *parent) : QObject(parent)
     m_map.insert(QString::number(ALIGN_VCENTER),QVariant(Qt::AlignVCenter));
 
     // Layout intersections
-    m_map.insert(QString::number(ALIGN_TOP|ALIGN_HCENTER),QVariant(Qt::AlignLeft | Qt::AlignHCenter));
+    m_map.insert(QString::number(ALIGN_TOP|ALIGN_HCENTER),QVariant(Qt::AlignTop | Qt::AlignHCenter));
     m_map.insert(QString::number(ALIGN_TOP|ALIGN_LEFT),QVariant(Qt::AlignTop | Qt::AlignLeft));
     m_map.insert(QString::number(ALIGN_TOP|ALIGN_RIGHT),QVariant(Qt::AlignTop | Qt::AlignRight));
     m_map.insert(QString::number(ALIGN_VCENTER|ALIGN_HCENTER),QVariant(Qt::AlignVCenter | Qt::AlignHCenter));

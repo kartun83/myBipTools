@@ -25,6 +25,7 @@ Item {
     }
 
     Rectangle {
+        id: topRect
         x: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftX
         y: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftY
         width: Utils.getNestedValue(parent.jsonParser_lcl,
@@ -34,43 +35,41 @@ Item {
 
         clip: true
         color: 'transparent'
+        //        color: 'black'
         border.width: 2
         border.color: 'lime'
 
-        Row {
-            spacing: Utils.getNestedValue(jsonParser_lcl, basePath).Spacing
-            Repeater {
-                model: itemModel
-                Image {
-                    id: timeImage
-                    source: fileHelper.getFilename(
-                                Utils.getNestedValue(
-                                    jsonParser_lcl,
-                                    basePath).ImageIndex + modelData + '.png')
+        RowLayout {
+            anchors.fill: parent
+            Rectangle {
+                id: contentRect
+                //                color: 'transparent'
+                color: border.color
+                border.color: 'blue'
+                border.width: 2
+                width: 20 //topRect.width
+                height: 20 //topRect.height
+                clip: true
+                Layout.alignment: alignmentConv[Utils.getNestedValue(
+                                                    jsonParser_lcl,
+                                                    basePath).Alignment]
+                //anchors.fill: parent
+                RowLayout {
+                    anchors.fill: parent
+                    id: repeaterLayout
+                    Repeater {
+                        model: itemModel
+                        anchors.fill: parent
+                        Text {
+                            id: test
+                            text: modelData
+                            //Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                        }
+                    }
                 }
             }
-            //            Layout.alignment: alignmentConv[Utils.getNestedValue(
-            //                                                jsonParser_lcl,
-            //                                                basePath).Alignment]
-            Layout.alignment: Qt.AlignBottom | Qt.AlignRight
-            //            Layout.anchors.right:
-            Layout.onAlignmentChanged: {
-                console.log("Alignment changed")
-                console.log('Alignment:' + Utils.getNestedValue(
-                                jsonParser_lcl, basePath).Alignment + '=>')
-            }
-
-            Component.onCompleted: {
-                console.log(alignmentConv)
-
-                console.log('Alignment:' + Utils.getNestedValue(
-                                jsonParser_lcl, basePath).Alignment + '=>')
-                /*+ alignmentConv[Utils.getNestedValue(
-                                                jsonParser_lcl,
-                                                basePath).Alignment])*/
-                console.log("Completed")
-            }
         }
+
         MouseArea {
             anchors.fill: parent
             onClicked: //container.clicked(container.cellColor)
@@ -96,7 +95,12 @@ Item {
             console.log("detected json data change in activity preview")
             itemModel.modelReset()
             itemModel.mydataChanged()
+            console.log(contentRect.Layout.alignment)
             //            itemModel.onMydataChanged
+            console.log(alignmentConv[Utils.getNestedValue(jsonParser_lcl,
+                                                           basePath).Alignment])
+            console.log(contentRect.Layout.alignment)
+            console.log('junk')
         }
     }
 }

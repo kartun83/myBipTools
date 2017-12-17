@@ -58,6 +58,26 @@ Item {
                     JSONComposeMenu {
                         id: jsonComposeMenu
                     }
+
+                    Button {
+                        text: "Open"
+                        onClicked: alignmentPopup.open()
+                    }
+
+                    AlignmentPanel {
+                        id: alignmentPopup
+                        jsonEditor: jsonDataEdit
+                    }
+
+                    //                    Popup {
+                    //                        id: popup
+                    //                        x: 100
+                    //                        y: 100
+                    //                        width: 200
+                    //                        height: 300
+                    //                        modal: true
+                    //                        focus: true
+                    //                        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
                 }
             }
         }
