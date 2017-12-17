@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import QtGraphicalEffects 1.0
+import QtQuick.Layouts 1.3
 import "Utitilies.js" as Utils
 
 Item {
@@ -33,6 +34,8 @@ Item {
 
         clip: true
         color: 'transparent'
+        border.width: 2
+        border.color: 'lime'
 
         Row {
             spacing: Utils.getNestedValue(jsonParser_lcl, basePath).Spacing
@@ -45,6 +48,27 @@ Item {
                                     jsonParser_lcl,
                                     basePath).ImageIndex + modelData + '.png')
                 }
+            }
+            //            Layout.alignment: alignmentConv[Utils.getNestedValue(
+            //                                                jsonParser_lcl,
+            //                                                basePath).Alignment]
+            Layout.alignment: Qt.AlignBottom | Qt.AlignRight
+            //            Layout.anchors.right:
+            Layout.onAlignmentChanged: {
+                console.log("Alignment changed")
+                console.log('Alignment:' + Utils.getNestedValue(
+                                jsonParser_lcl, basePath).Alignment + '=>')
+            }
+
+            Component.onCompleted: {
+                console.log(alignmentConv)
+
+                console.log('Alignment:' + Utils.getNestedValue(
+                                jsonParser_lcl, basePath).Alignment + '=>')
+                /*+ alignmentConv[Utils.getNestedValue(
+                                                jsonParser_lcl,
+                                                basePath).Alignment])*/
+                console.log("Completed")
             }
         }
         MouseArea {

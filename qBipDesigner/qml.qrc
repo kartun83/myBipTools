@@ -24,5 +24,6 @@
         <file>DatePreviewOneLine.qml</file>
         <file>AnalogDial.qml</file>
         <file>JSONComposeMenu.qml</file>
+        <file>AlignmentDebug.qml</file>
     </qresource>
 </RCC>

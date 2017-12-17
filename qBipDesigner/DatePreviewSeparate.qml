@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import QtGraphicalEffects 1.0
+import QtQuick.Layouts 1.3
 import "Utitilies.js" as Utils
 
 Item {
@@ -9,6 +10,7 @@ Item {
     property alias modelData: itemModel.mydata
     property string suffix
     property string checkAttr
+    property string elementDesc
 
     ListModel {
         id: itemModel
@@ -46,33 +48,72 @@ Item {
         height: Utils.getNestedValue(
                     parent.jsonParser_lcl,
                     parent.basePath + '.' + suffix).BottomRightY - y
-
+        id: topRect
         clip: true
         color: 'transparent'
 
-        Row {
-            spacing: Utils.getNestedValue(jsonParser_lcl,
-                                          basePath + '.' + suffix).Spacing
-            Repeater {
-                model: itemModel
-                Image {
-                    id: timeImage
-                    source: fileHelper.getFilename(
-                                Utils.getNestedValue(
-                                    jsonParser_lcl,
-                                    basePath + '.' + suffix).ImageIndex + Number(
-                                    modelData) + '.png')
+        Rectangle {
+            id: borderBox
+            anchors.fill: parent
+            border.color: app.gridColor
+            border.width: 2
+            color: "transparent"
+            //visible: false
+            visible: true
+            //            property var boxOverlay: myOverlay
+            property var topRect: topRect
+            property string elementDesc: baseImg.elementDesc
+
+            Row {
+                spacing: Utils.getNestedValue(jsonParser_lcl,
+                                              basePath + '.' + suffix).Spacing
+                Layout.alignment: alignmentConv[Utils.getNestedValue(
+                                                    jsonParser_lcl,
+                                                    basePath + '.' + suffix).Alignment]
+                Repeater {
+                    model: itemModel
+                    Image {
+                        id: timeImage
+                        source: fileHelper.getFilename(
+                                    Utils.getNestedValue(
+                                        jsonParser_lcl,
+                                        basePath + '.' + suffix).ImageIndex + Number(
+                                        modelData) + '.png')
+                    }
+                }
+                Component.onCompleted: {
+                    console.log(alignmentConv)
+                    console.log(alignmentConv[Utils.getNestedValue(
+                                                  jsonParser_lcl,
+                                                  basePath + '.' + suffix).Alignment])
                 }
             }
         }
+        //        ColorOverlay {
+        //            id: myOverlay
+        //            anchors.fill: borderBox
+        //            source: timeImage
+        //            color: app.gridColor
+        //            visible: false
+        //        }
         MouseArea {
-            anchors.fill: parent
-            onClicked: //container.clicked(container.cellColor)
-            {
-                console.log("Eval2:" + fileHelper.getFilename(
-                                Utils.getNestedValue(
-                                    jsonParser_lcl,
-                                    basePath).ImageIndex + modelData - 1 + '.png'))
+            anchors.fill: borderBox
+            onClicked: {
+                console.log("Clicked on:" + baseImg.elementDesc)
+                //                if (selectedElement) {
+                //                    if (selectedElement.visible === true) {
+                //                        selectedElement.visible = false
+                //                    }
+                //                }
+
+                //                borderBox.visible = !borderBox.visible
+                borderBox.border.width === 2 ? borderBox.border.width
+                                               === 0 : borderBox.border.width === 2
+                if (selectedElement != borderBox) {
+                    selectedElement = borderBox
+                } else {
+                    selectedElement = null
+                }
             }
         }
     }

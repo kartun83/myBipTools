@@ -82,9 +82,31 @@ Item {
         idx: 7
     }
 
-    // Analog TimePreview
-    //    AnalogDial {
-    //    }
+    // Analog time preview
+    AnalogDial {
+        basePath: 'AnalogDialFace.Hours'
+        center: 'Center'
+        suffix: 'Shape'
+        modelData: mySettingsModel.Time
+        segment: 0
+        base: 12
+    }
+    AnalogDial {
+        basePath: 'AnalogDialFace.Minutes'
+        center: 'Center'
+        suffix: 'Shape'
+        modelData: mySettingsModel.Time
+        segment: 1
+        base: 60
+    }
+
+    AnalogDial {
+        basePath: 'AnalogDialFace.Seconds'
+        center: 'Center'
+        modelData: mySettingsModel.Time
+        segment: 2
+        base: 60
+    }
 
     // Date
     DatePreviewSeparate {
@@ -93,6 +115,7 @@ Item {
         modelData: mySettingsModel.DateMonth
         suffix: 'Separate.Month'
         checkAttr: 'TwoDigitsMonth'
+        elementDesc: 'Date.MonthAndDay.Separate.Month'
     }
     DatePreviewSeparate {
         id: dateTextPreviewSeparate2
@@ -100,6 +123,7 @@ Item {
         modelData: mySettingsModel.DateDay
         suffix: 'Separate.Day'
         checkAttr: 'TwoDigitsDay'
+        elementDesc: 'Date.MonthAndDay.Separate.Day'
     }
 
     DatePreviewOneLine {
