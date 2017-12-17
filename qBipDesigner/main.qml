@@ -2,7 +2,7 @@ import QtQuick 2.7
 import QtQml 2.2
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
-import QtQuick.Dialogs 1.2
+import QtQuick.Dialogs 1.3
 //import Qt.labs.platform 1.0 as Labs
 import MyBipTools 1.0
 
@@ -41,6 +41,7 @@ ApplicationWindow {
 
     MessageDialog {
         id: errorDialog
+        icon: StandardIcon.Warning
         onAccepted: {
             this.visible = false
 

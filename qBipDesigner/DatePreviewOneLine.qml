@@ -104,6 +104,14 @@ Item {
                                     basePath).ImageIndex + modelData - 1 + '.png'))
             }
         }
+
+        onWidthChanged: {
+            validateViewBox(basePath, x, y, width, height)
+        }
+
+        onHeightChanged: {
+            validateViewBox(basePath, x, y, width, height)
+        }
     }
 
     Connections {

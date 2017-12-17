@@ -41,10 +41,6 @@ Item {
         clip: true
         color: 'transparent'
 
-        onWidthChanged: {
-            console.log("Weather preview:" + x + y)
-        }
-
         Row {
             spacing: Utils.getNestedValue(jsonParser_lcl,
                                           basePath + '.' + suffix).Spacing
@@ -85,6 +81,13 @@ Item {
                                     jsonParser_lcl,
                                     basePath).ImageIndex + '.png'))
             }
+        }
+        onWidthChanged: {
+            validateViewBox(basePath, x, y, width, height)
+        }
+
+        onHeightChanged: {
+            validateViewBox(basePath, x, y, width, height)
         }
     }
 

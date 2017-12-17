@@ -62,6 +62,13 @@ Item {
                                     basePath).ImageIndex + '.png'))
             }
         }
+        onWidthChanged: {
+            validateViewBox(basePath, x, y, width, height)
+        }
+
+        onHeightChanged: {
+            validateViewBox(basePath, x, y, width, height)
+        }
     }
     Connections {
         target: app
