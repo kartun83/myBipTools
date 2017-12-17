@@ -3,6 +3,7 @@ import QtQml 2.2
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Dialogs 1.2
+//import Qt.labs.platform 1.0 as Labs
 import MyBipTools 1.0
 
 import "Utitilies.js" as Utils
@@ -23,6 +24,8 @@ ApplicationWindow {
     property string gridColor: "white"
     property bool analogDialRotation: false //true
 
+    property alias errorDialogRef: errorDialog
+
     // Global params
     property var selectedElement
 
@@ -38,7 +41,6 @@ ApplicationWindow {
 
     MessageDialog {
         id: errorDialog
-        title: qsTr("JSon Parsing Error")
         onAccepted: {
             this.visible = false
 
@@ -102,11 +104,27 @@ ApplicationWindow {
 
             //console.log(JSON.stringify(e))
             //if (e.name == "SyntaxError") {
+            errorDialog.title = qsTr("JSon Parsing Error")
             errorDialog.text = e
             errorDialog.visible = true
             console.log("Parse error:", e)
             //} else
             //    throw e
+        }
+    }
+
+    function validateViewBox(i_basePath, i_x, i_y, i_width, i_height) {
+        if (i_width < 0 | i_height < 0) {
+            var message = qsTr(
+                        'View rectangle for %1 defined incorrectly.').arg(
+                        i_basePath)
+            var informative = qsTr(
+                        'X:%1, Y:%2, Calculated width:%3, Calculated height:%4').arg(
+                        i_x).arg(i_y).arg(i_width).arg(i_height)
+            errorDialog.title = qsTr("Markup error")
+            errorDialog.text = message
+            errorDialog.informativeText = informative
+            errorDialog.visible = true
         }
     }
 }

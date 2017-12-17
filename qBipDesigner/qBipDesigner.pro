@@ -19,6 +19,8 @@ SOURCES += main.cpp \
     jsonhighlighter.cpp \
     highlightcomponent.cpp
 
+QT += widgets
+
 RESOURCES += qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model

@@ -14,18 +14,33 @@ Item {
         id: topRect
 
         clip: true
-        color: 'green' //'transparent'
+        color: 'green'
+
         border.width: 2
         border.color: 'lime'
-
         RowLayout {
-
-            Repeater {
+            anchors.fill: parent
+            Rectangle {
+                color: 'transparent'
+                border.color: 'blue'
+                border.width: 2
+                width: 50
+                height: 50
+                clip: true
                 Layout.alignment: Qt.AlignRight | Qt.AlignBottom
-                model: 5
-                Text {
-                    id: textInRepeater
-                    text: modelData
+                //anchors.fill: parent
+                RowLayout {
+                    anchors.fill: parent
+                    id: repeaterLayout
+                    Repeater {
+                        model: 5
+                        anchors.fill: parent
+                        Text {
+                            id: test
+                            text: modelData
+                            //Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                        }
+                    }
                 }
             }
         }
