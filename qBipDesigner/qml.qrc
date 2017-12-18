@@ -26,5 +26,6 @@
         <file>JSONComposeMenu.qml</file>
         <file>AlignmentDebug.qml</file>
         <file>AlignmentPanel.qml</file>
+        <file>BipJSONTemplate.js</file>
     </qresource>
 </RCC>

@@ -7,6 +7,7 @@ import QtQuick.Dialogs 1.3
 import MyBipTools 1.0
 
 import "Utitilies.js" as Utils
+import "BipJSONTemplate.js" as BipJSONTemplate
 
 ApplicationWindow {
     visible: true
