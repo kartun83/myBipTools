@@ -49,30 +49,45 @@ Item {
             Rectangle {
                 id: contentRect
                 color: 'transparent'
+                property int baseWidth
+                property int baseHeight
+                visible: true
                 //TODO :: Confirm
                 //width: 20 // For now it's streching and not clipping
                 //height: 20 //topRect.height
                 // TODO :: Find proper way to calculate dimentions
-                width: 50
-                height: 50
+                //                width: 50
+                //                height: 50
                 clip: false
                 Layout.alignment: alignmentConv[Utils.getNestedValue(
                                                     jsonParser_lcl,
                                                     basePath).Alignment]
                 //anchors.fill: parent
                 RowLayout {
+                    Layout.margins: 2
                     anchors.fill: parent
                     id: repeaterLayout
                     spacing: Utils.getNestedValue(jsonParser_lcl,
                                                   basePath).Spacing
                     Repeater {
                         model: itemModel
+                        id: repeater
                         Image {
                             id: timeImage
                             source: fileHelper.getFilename(
                                         Utils.getNestedValue(
                                             jsonParser_lcl,
                                             basePath).ImageIndex + modelData + '.png')
+                            onStatusChanged: {
+                                if (this.status == Image.Ready) {
+                                    contentRect.baseWidth = Math.max(
+                                                contentRect.baseWidth,
+                                                implicitWidth)
+                                    contentRect.baseHeight = Math.max(
+                                                contentRect.baseWidth,
+                                                implicitHeight)
+                                }
+                            }
                         }
                     }
                 }
@@ -107,6 +122,8 @@ Item {
             console.log("detected json data change in activity preview")
             itemModel.modelReset()
             itemModel.mydataChanged()
+            contentRect.width = contentRect.baseWidth * itemModel.count
+            contentRect.height = contentRect.baseHeight //* itemModel.count
             //            itemModel.onMydataChanged
         }
     }

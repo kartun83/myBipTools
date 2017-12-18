@@ -25,8 +25,10 @@ Item {
                 color: 'transparent'
                 border.color: 'blue'
                 border.width: 2
-                width: 50
-                height: 50
+                //                Layout.preferredWidth: 50
+                //                Layout.preferredHeight: 50
+                //                width: 50
+                //                height: 50
                 clip: true
                 Layout.alignment: Qt.AlignRight | Qt.AlignBottom
 
@@ -41,6 +43,11 @@ Item {
                             id: test
                             text: modelData
                             //Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                            Component.onCompleted: {
+
+                                //contentRect.Layout.preferredHeight += implicitHeight
+                                //contentRect.Layout.preferredWidth += implicitWidth
+                            }
                         }
                     }
                 }
