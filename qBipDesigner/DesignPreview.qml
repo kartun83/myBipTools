@@ -229,5 +229,6 @@ Item {
         id: batteryTextPreview
         basePath: "Battery.Text"
         modelData: mySettingsModel.Battery
+        elementDesc: qsTr("Battery.Text")
     }
 }

@@ -56,7 +56,7 @@ Item {
             id: borderBox
             anchors.fill: parent
             border.color: app.gridColor
-            border.width: 2
+            border.width: 0
             color: "transparent"
             //visible: false
             visible: true
@@ -100,15 +100,9 @@ Item {
             anchors.fill: borderBox
             onClicked: {
                 console.log("Clicked on:" + baseImg.elementDesc)
-                //                if (selectedElement) {
-                //                    if (selectedElement.visible === true) {
-                //                        selectedElement.visible = false
-                //                    }
-                //                }
-
-                //                borderBox.visible = !borderBox.visible
-                borderBox.border.width === 2 ? borderBox.border.width
-                                               === 0 : borderBox.border.width === 2
+                borderBox.border.width
+                        === app.borderWidth ? borderBox.border.width
+                                              = 0 : borderBox.border.width = app.borderWidth
                 if (selectedElement != borderBox) {
                     selectedElement = borderBox
                 } else {

@@ -8,6 +8,7 @@ Item {
     property string basePath
     property var jsonParser_lcl: jsonParser
     property alias modelData: itemModel.mydata
+    property string elementDesc
 
     ListModel {
         id: itemModel
@@ -36,18 +37,23 @@ Item {
         clip: true
         color: 'transparent'
         //        color: 'black'
-        border.width: 2
-        border.color: 'lime'
+        border.width: 0
+        border.color: app.gridColor
+        visible: true
 
         RowLayout {
             anchors.fill: parent
+            id: baseRowLayout
+            property string elementDesc: baseImg.elementDesc
+            property var topRect: topRect
             Rectangle {
                 id: contentRect
-                //                color: 'transparent'
-                color: border.color
-                border.color: 'blue'
-                border.width: 2
-                width: 20 //topRect.width
+                color: 'transparent'
+                //color: border.color
+                //border.color: 'blue'
+                //border.width: 2
+                //TODO :: Confirm
+                width: 20 // For now it's streching and not clipping
                 height: 20 //topRect.height
                 clip: true
                 Layout.alignment: alignmentConv[Utils.getNestedValue(
@@ -72,12 +78,17 @@ Item {
 
         MouseArea {
             anchors.fill: parent
-            onClicked: //container.clicked(container.cellColor)
-            {
-                console.log("Eval2:" + fileHelper.getFilename(
-                                Utils.getNestedValue(
-                                    jsonParser_lcl,
-                                    basePath).ImageIndex + modelData - 1 + '.png'))
+            onClicked: {
+
+                console.log("Clicked on:" + baseImg.elementDesc)
+                topRect.border.width === app.borderWidth ? topRect.border.width
+                                                           = 0 : topRect.border.width
+                                                           = app.borderWidth
+                if (selectedElement != baseRowLayout) {
+                    selectedElement = baseRowLayout
+                } else {
+                    selectedElement = null
+                }
             }
         }
 

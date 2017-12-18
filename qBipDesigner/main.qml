@@ -22,6 +22,7 @@ ApplicationWindow {
     // Application behaivor params
     property bool gridEnabled
     property string gridColor: "white"
+    property int borderWidth: 2
     property bool analogDialRotation: false //true
 
     property alias errorDialogRef: errorDialog
