@@ -36,7 +36,6 @@ Item {
 
         clip: true
         color: 'transparent'
-        //        color: 'black'
         border.width: 0
         border.color: app.gridColor
         visible: true
@@ -49,9 +48,6 @@ Item {
             Rectangle {
                 id: contentRect
                 color: 'transparent'
-                //color: border.color
-                //border.color: 'blue'
-                //border.width: 2
                 //TODO :: Confirm
                 width: 20 // For now it's streching and not clipping
                 height: 20 //topRect.height
@@ -103,7 +99,7 @@ Item {
     Connections {
         target: app
         onJsonParserChanged: {
-            console.log("detected json data change in activity preview")
+            console.log("detected json data change in AdvanedXY preview")
             itemModel.modelReset()
             itemModel.mydataChanged()
             console.log(contentRect.Layout.alignment)

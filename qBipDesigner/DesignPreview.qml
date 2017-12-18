@@ -146,21 +146,25 @@ Item {
     ActivityPreview {
         id: steps
         basePath: "Activity.Steps"
+        elementDesc: "Activity.Steps"
         modelData: mySettingsModel.Steps
     }
     ActivityPreview {
         id: stepsGoal
         basePath: "Activity.StepsGoal"
+        elementDesc: "Activity.StepsGoal"
         modelData: mySettingsModel.StepsGoal
     }
     ActivityPreview {
         id: calories
         basePath: "Activity.Calories"
+        elementDesc: "Activity.Calories"
         modelData: mySettingsModel.Calories
     }
     ActivityPreview {
         id: pulse
         basePath: "Activity.Pulse"
+        elementDesc: "Activity.Pulse"
         modelData: mySettingsModel.Pulse
     }
 

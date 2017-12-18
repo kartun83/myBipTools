@@ -11,6 +11,7 @@ Item {
     property string basePath
     property var jsonParser_lcl: jsonParser
     property alias modelData: itemModel.mydata
+    property string elementDesc
 
     ListModel {
         id: itemModel
@@ -29,6 +30,7 @@ Item {
     }
 
     Rectangle {
+        id: topRect
         x: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftX
         y: Utils.getNestedValue(parent.jsonParser_lcl, parent.basePath).TopLeftY
         width: Utils.getNestedValue(parent.jsonParser_lcl,
@@ -39,28 +41,56 @@ Item {
         clip: true
         color: 'transparent'
 
-        Row {
-            spacing: Utils.getNestedValue(jsonParser_lcl, basePath).Spacing
-            Repeater {
-                model: itemModel
-                Image {
-                    id: timeImage
-                    source: fileHelper.getFilename(
-                                Utils.getNestedValue(
-                                    jsonParser_lcl,
-                                    basePath).ImageIndex + modelData + '.png')
+        RowLayout {
+            anchors.fill: parent
+            id: baseRowLayout
+            property string elementDesc: baseImg.elementDesc
+            property var topRect: topRect
+            Rectangle {
+                id: contentRect
+                color: 'transparent'
+                //TODO :: Confirm
+                //width: 20 // For now it's streching and not clipping
+                //height: 20 //topRect.height
+                // TODO :: Find proper way to calculate dimentions
+                width: 50
+                height: 50
+                clip: false
+                Layout.alignment: alignmentConv[Utils.getNestedValue(
+                                                    jsonParser_lcl,
+                                                    basePath).Alignment]
+                //anchors.fill: parent
+                RowLayout {
+                    anchors.fill: parent
+                    id: repeaterLayout
+                    spacing: Utils.getNestedValue(jsonParser_lcl,
+                                                  basePath).Spacing
+                    Repeater {
+                        model: itemModel
+                        Image {
+                            id: timeImage
+                            source: fileHelper.getFilename(
+                                        Utils.getNestedValue(
+                                            jsonParser_lcl,
+                                            basePath).ImageIndex + modelData + '.png')
+                        }
+                    }
                 }
             }
         }
 
         MouseArea {
             anchors.fill: parent
-            onClicked: //container.clicked(container.cellColor)
-            {
-                console.log("Eval2:" + fileHelper.getFilename(
-                                Utils.getNestedValue(
-                                    jsonParser_lcl,
-                                    basePath).ImageIndex + '.png'))
+            onClicked: {
+                console.log("Clicked on:" + baseImg.elementDesc)
+                topRect.border.width === app.borderWidth ? topRect.border.width
+                                                           = 0 : topRect.border.width
+                                                           = app.borderWidth
+                if (selectedElement != baseRowLayout) {
+                    selectedElement = baseRowLayout
+                } else {
+                    selectedElement = null
+                }
             }
         }
         onWidthChanged: {
